@@ -26,12 +26,12 @@ public class AirlineSearchView {
 
   GRADE seatGrade(String g) {
     switch (g) {
-      case "1":
-        return GRADE.ECONOMY;
-      case "2":
-        return GRADE.PRESTIGE;
-      case "3":
-        return GRADE.FIRST;
+//      case "1":
+//        return GRADE.ECONOMY;
+//      case "2":
+//        return GRADE.PRESTIGE;
+//      case "3":
+//        return GRADE.FIRST;
       default:
         System.out.println("숫자를 정확히 입력해주세요");
     }
