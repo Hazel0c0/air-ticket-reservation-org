@@ -1,41 +1,86 @@
 package jiwon.airlineStatus;
 
+import jiwon.enumset.Grade;
+
 import static yougeun.Utility.*;
 
 // 항공편 현황
 public class AirlineSearchView {
-  void searchView() {
-    System.out.println("===== 항공권 예매 =====");
-    input("출발지 입력해주세요");
-    /* 출발지 (일부) 입력하면 출발지 목록 보여주는 기능 */
+  static AirlineRepository ar;
 
-    input("도착지 입력해주세요");
-    /* 출발지 입력 되면 가지 못하는 도착지 지워지게 */
-
-    input("가는날");
-    input("오는날");
-    /* 오는날 선택시 가는날 전날은 선택하지 못하도록 */
-
-    input("1. 왕복   2. 편도");
-//  ROUND_TRIP, ONE_WAY
-
-    String inputGrade = input("좌석 등급을 선택해주세요\n" +
-        "1. ECONOMY  2. PRESTIGE  3. FIRST");
-    GRADE grade = seatGrade(inputGrade);
+  static {
+    ar = new AirlineRepository();
   }
 
-  GRADE seatGrade(String n) {
+  public static void searchView() {
+    System.out.println("===== 항공권 예매 =====");
+
+    /* [+] 출발지 (일부) 입력하면 출발지 목록 보여주는 기능 */
+    ar.airportList(); // 출발지 목록
+    String airport = ar.startingPoint(input("\n# 출발지를 선택해주세요"));
+    System.out.println("[ 선택하신 공항은 " + airport + "입니다 ]\n");
+
+    /* 출발지 입력되면 가지 못하는 도착지 지워지게 */
+    System.out.println("# 여행 할 도시 선택을 도와드릴게요");
+    System.out.println("  1. 지금! 인기 여행지");
+    System.out.println("  2. 테마별 여행지");
+    System.out.println("  3. 전체 도시 보기");
+
+    ar.destination(input("\n 번호를 선택해주세요"));
+
+    int go;
+//    날짜 어떤식으로 입력하는게 좋을지..
+    while (true) {
+      go = Integer.parseInt(input("\n# 가는날 \n여섯자리를 정확히 입력해주세요(ex.230411)"));
+      if (go > 230411) {
+        break;
+      }
+      // 오늘날짜 이후로 선택 가능하게 if
+      // ex 에 오늘날짜 나오게 설정
+    }
+    while (true) {
+      int comeBack
+          = Integer.parseInt(input("\n# 오는날 \n여섯자리를 정확히 입력해주세요(ex.230412)"));
+      if (comeBack > go) {
+        break;
+      } else {
+        System.out.println("!! 오늘날을 다시 입력해주세요.");
+      }
+    }
+
+    System.out.println(
+        "---------------------------------------\n" +
+            "전 구간에 소아와 함께 여행하는 동반 성인이 있을 경우,\n" +
+            "소아 단독 항공권 구매가 가능합니다.\n" +
+            "유아는 탑승일 기준 만 2세 미만까지이며,\n" +
+            "좌석을 점유하지 않습니다.\n" +
+            "---------------------------------------");
+    System.out.println("탑승 인원을 입력해주세요");
+    String adult = inputDot("성인");
+    String child = inputDot("소아");
+    String baby = inputDot("유아");
+
+    String way = input("\n  [ 1. 왕복   2. 편도 ]");
+    //  ROUND_TRIP, ONE_WAY
+
+    String inputGrade = input("\n# 좌석 등급을 선택해주세요\n" +
+        "1. ECONOMY  2. PRESTIGE  3. FIRST");
+    Grade grade = seatGrade(inputGrade);
+
+  }
+
+  private static Grade seatGrade(String n) {
     switch (n) {
-//      case "1":
-//        return GRADE.ECONOMY;
-//      case "2":
-//        return GRADE.PRESTIGE;
-//      case "3":
-//        return GRADE.FIRST;
+      case "1":
+        return Grade.ECONOMY;
+      case "2":
+        return Grade.PRESTIGE;
+      case "3":
+        return Grade.FIRST;
       default:
         System.out.println("숫자를 정확히 입력해주세요");
+        return null;
     }
-    return null;
   }
 
 
