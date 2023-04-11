@@ -3,7 +3,6 @@ package yougeun.checkin;
 public class SeatVO {
 
     private static boolean seat[][];
-
     static {
         seat = new boolean[9][6];
         for (int i = 0; i < seat.length; i++) {
@@ -14,7 +13,6 @@ public class SeatVO {
             }
         }
     }
-
     public static boolean[][] getSeat() {
         return seat;
     }
