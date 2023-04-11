@@ -4,6 +4,14 @@ public class Card {
     private String cardNum;
     private long balance;
 
+    public Card() {
+    }
+
+    public Card(String cardNum, long balance) {
+        this.cardNum = cardNum;
+        this.balance = balance;
+    }
+
     public String getCardNum() {
         return cardNum;
     }

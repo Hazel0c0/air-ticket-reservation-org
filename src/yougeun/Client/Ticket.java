@@ -1,13 +1,22 @@
 package yougeun.Client;
 
-import flightStatus.WAY;
+
+import jiwon.airlineStatus.WAY;
 
 public class Ticket {
-    private String from;
-    private String to;
-    private int date;
-    private WAY way;
-    private int personnal;
+    private String from;    // 출발지
+    private String to;  // 도착지
+    private int date;   // 탑승일
+    private WAY way; // 왕복 & 편도
+    private int personnal; // 총 인원
+
+    public Ticket(String from, String to, int date, WAY way, int personnal) {
+        this.from = from;
+        this.to = to;
+        this.date = date;
+        this.way = way;
+        this.personnal = personnal;
+    }
 
     public String getFrom() {
         return from;

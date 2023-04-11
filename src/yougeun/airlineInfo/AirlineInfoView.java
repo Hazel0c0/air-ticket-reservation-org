@@ -9,6 +9,7 @@ public class AirlineInfoView {
 
     public static void viewAirline(AirlineVO vo){
 
+
         while (true) {
             System.out.println("1. 공항정보");
             System.out.println("2. 체크인 정보");
