@@ -3,7 +3,7 @@
 
 우리 토큰 ㅎ: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
 
-## 영수
+## 동우
 
 - 로그인,
 
