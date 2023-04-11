@@ -22,6 +22,19 @@ public class Client {
         this.id = id;
         this.password = password;
     }
+
+    public Client(String userName, Gender gender, String userPhone, String email, String location, String id, String password, Card card, int point) {
+        this.userName = userName;
+        this.gender = gender;
+        this.userPhone = userPhone;
+        this.email = email;
+        this.location = location;
+        this.id = id;
+        this.password = password;
+        this.card = card;
+        this.point = point;
+    }
+
     public Client(String userName, Gender gender, String userPhone, String email, String location, String id, String password, boolean isAdmin) {
         this.userName = userName;
         this.gender = gender;
@@ -31,6 +44,19 @@ public class Client {
         this.id = id;
         this.password = password;
         this.isAdmin = isAdmin;
+    }
+
+    public Client(String userName, Gender gender, String userPhone, String email, String location, String id, String password, Card card, Ticket ticket, int point) {
+        this.userName = userName;
+        this.gender = gender;
+        this.userPhone = userPhone;
+        this.email = email;
+        this.location = location;
+        this.id = id;
+        this.password = password;
+        this.card = card;
+        this.ticket = ticket;
+        this.point = point;
     }
 
     public String getUserName() {
