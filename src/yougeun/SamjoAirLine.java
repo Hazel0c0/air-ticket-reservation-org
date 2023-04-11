@@ -2,6 +2,7 @@ package yougeun;
 
 import yougeun.airlineInfo.AirlineInfoView;
 import yougeun.board.BoardView;
+import yougeun.checkin.SeatView;
 
 import static yougeun.Utility.*;
 
@@ -16,11 +17,11 @@ public class SamjoAirLine {
         System.out.println("=== 삼조 에어라인에 오신 것을 환영합니다 ===");
         System.out.println("1. 국내선 예매");    // 지원님
         System.out.println("2. 국제선 예매");    // 지원님
-        System.out.println("3. 공항안내");       // 유근이
+        System.out.println("3. 공항안내");       // 유근
         // 공항선택, 공항정보, 체크인, 라운지
-        System.out.println("4. 공지사항");       // 유근이
+        System.out.println("4. 공지사항");       // 유근
         // 게시판 형식의 프로그램
-        System.out.println("5. 체크인");       //
+        System.out.println("5. 체크인");       // 유근
         System.out.println("6. 예약 조회");
         //  예약번호, 탑승일, 항공권번호(13자리숫자), (1) 전체예약조회 (2) 예약번호 조회 (3) 항공권 번호 조회 (0) 뒤로가기
         System.out.println("7. 마일리지 항공권");  //
@@ -55,7 +56,7 @@ public class SamjoAirLine {
                 BoardView.run();
                 break;
             case 5:
-                System.out.println("체크인");
+                SeatView.checkin();
                 stop();
                 break;
             case 6:
