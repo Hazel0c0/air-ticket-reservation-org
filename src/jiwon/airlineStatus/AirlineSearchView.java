@@ -1,5 +1,7 @@
 package jiwon.airlineStatus;
 
+import jiwon.enumset.Grade;
+
 import static yougeun.Utility.*;
 
 // 항공편 현황
@@ -21,17 +23,17 @@ public class AirlineSearchView {
 
     String inputGrade = input("좌석 등급을 선택해주세요\n" +
         "1. ECONOMY  2. PRESTIGE  3. FIRST");
-    GRADE grade = seatGrade(inputGrade);
+    Grade grade = seatGrade(inputGrade);
   }
 
-  GRADE seatGrade(String n) {
+  public Grade seatGrade(String n) {
     switch (n) {
-//      case "1":
-//        return GRADE.ECONOMY;
-//      case "2":
-//        return GRADE.PRESTIGE;
-//      case "3":
-//        return GRADE.FIRST;
+      case "1":
+        return Grade.ECONOMY;
+      case "2":
+        return Grade.PRESTIGE;
+      case "3":
+        return Grade.FIRST;
       default:
         System.out.println("숫자를 정확히 입력해주세요");
     }
