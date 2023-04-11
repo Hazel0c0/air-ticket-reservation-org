@@ -1,8 +1,11 @@
 package yougeun;
 
+import yougeun.Client.ClientRepository;
 import yougeun.airlineInfo.AirlineInfoView;
 import yougeun.board.BoardView;
 import yougeun.checkin.SeatView;
+import yougeun.myflight.MyPage;
+import yougeun.reservationCheck.ReservationCheck;
 
 import static yougeun.Utility.*;
 
@@ -22,10 +25,10 @@ public class SamjoAirLine {
         System.out.println("4. 공지사항");       // 유근
         // 게시판 형식의 프로그램
         System.out.println("5. 체크인");       // 유근
-        System.out.println("6. 예약 조회");
-        //  예약번호, 탑승일, 항공권번호(13자리숫자), (1) 전체예약조회 (2) 예약번호 조회 (3) 항공권 번호 조회 (0) 뒤로가기
+        System.out.println("6. 예약 조회");    // 유근
         System.out.println("7. 마일리지 항공권");  //
-        System.out.println("8. My FLIGHT");     //
+        System.out.println("8. My FLIGHT");     // 유근
+        // 개인 자산 관리, 포인트 관리 ...
         System.out.println("9. 스케줄/운임 조회"); //
         System.out.println("0. 로그아웃");      //
         System.out.println("=====================================");
@@ -60,7 +63,8 @@ public class SamjoAirLine {
                 stop();
                 break;
             case 6:
-                System.out.println("예약 조회");
+//                System.out.println("예약 조회");
+                ReservationCheck.check();
                 stop();
                 break;
             case 7:
@@ -68,7 +72,8 @@ public class SamjoAirLine {
                 stop();
                 break;
             case 8:
-                System.out.println("My Flight");
+//                System.out.println("My Flight");
+                MyPage.myPageMenu(ClientRepository.getClientArrayList().get(5));
                 stop();
                 break;
             case 9:
