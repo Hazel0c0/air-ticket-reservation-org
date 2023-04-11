@@ -24,8 +24,8 @@ public class AirlineSearchView {
     GRADE grade = seatGrade(inputGrade);
   }
 
-  GRADE seatGrade(String g) {
-    switch (g) {
+  GRADE seatGrade(String n) {
+    switch (n) {
 //      case "1":
 //        return GRADE.ECONOMY;
 //      case "2":
