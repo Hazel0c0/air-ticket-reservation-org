@@ -52,7 +52,6 @@ public class SamjoAirLine {
 //                stop();
                 break;
             case 4:
-                BoardView.setCurrentPage(1);
                 BoardView.run();
                 break;
             case 5:
