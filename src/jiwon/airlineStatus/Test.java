@@ -7,11 +7,11 @@ import static yougeun.Utility.input;
 import static yougeun.Utility.inputDot;
 
 public class Test {
-  static AirlineRepository ar;
-
-  static {
-    ar = new AirlineRepository();
-  }
+//  static AirlineRepository ar;
+//
+//  static {
+//    ar = new AirlineRepository();
+//  }
   public static void main(String[] args) {
 
 //    System.out.println("# 여행 할 도시 선택을 도와드릴게요");
