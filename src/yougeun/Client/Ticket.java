@@ -1,12 +1,13 @@
 package yougeun.Client;
 
-import flightStatus.WAY;
+
+import jiwon.enumset.Way;
 
 public class Ticket {
     private String from;
     private String to;
     private int date;
-    private WAY way;
+    private Way way;
     private int personnal;
 
     public String getFrom() {
@@ -33,13 +34,7 @@ public class Ticket {
         this.date = date;
     }
 
-    public WAY getWay() {
-        return way;
-    }
 
-    public void setWay(WAY way) {
-        this.way = way;
-    }
 
     public int getPersonnal() {
         return personnal;
