@@ -35,6 +35,17 @@ public class Utility {
             return "error";
         }
     }
+    public static String inputDot(String s){
+        System.out.print(s);
+        System.out.print(": ");
+        try {
+            return br.readLine();
+        } catch (IOException e) {
+            System.out.println("입출력 오류입니다.");
+            e.printStackTrace();
+            return "error";
+        }
+    }
 
     // 사용자 입력 오류가 생길 때 오류 메시지를 출력하는 함수
     public static void inputError(){
