@@ -52,4 +52,7 @@ public class Utility {
         System.out.println("지원되지 않는 명령어입니다.");
     }
 
+    public static void makeLine() {
+        System.out.println("----------------------------------");
+    }
 }
