@@ -1,6 +1,15 @@
 package yougeun.Client;
 
+/*
+import jiwon.enumset.Way;
 
+public class Ticket {
+    private String from;
+    private String to;
+    private int date;
+    private Way way;
+    private int personnal;
+=======
 import jiwon.airlineStatus.WAY;
 
 public class Ticket {
@@ -18,6 +27,8 @@ public class Ticket {
         this.personnal = personnal;
     }
 
+유근님 .죄송해요..충돌났어요..ㅠ
+*/
     public String getFrom() {
         return from;
     }
@@ -42,13 +53,7 @@ public class Ticket {
         this.date = date;
     }
 
-    public WAY getWay() {
-        return way;
-    }
 
-    public void setWay(WAY way) {
-        this.way = way;
-    }
 
     public int getPersonnal() {
         return personnal;
