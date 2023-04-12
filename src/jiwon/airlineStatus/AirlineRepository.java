@@ -1,11 +1,15 @@
 package jiwon.airlineStatus;
 
 import jiwon.StringList;
+import jiwon.enumset.Theme;
 import yougeun.Client.Ticket;
 import yougeun.Utility;
 
 import java.util.*;
 
+import static java.util.stream.Collectors.toList;
+import static jiwon.airlineStatus.StatusRepository.city;
+import static jiwon.enumset.Theme.*;
 import static yougeun.Utility.*;
 
 public class AirlineRepository {
@@ -36,21 +40,16 @@ public class AirlineRepository {
 
   static void destination(String inputTo) {
 
-    List<String> popularity = new ArrayList<>(
-        Arrays.asList("오사카", "후쿠오카", "타이페이", "도쿄"
-            , "제주공항", "홍콩 국제", "방콕", "오키나와 나하", "괌 A.B. 원팟")
-    );
 
     switch (inputTo) {
-      case "1":
+      case "1": // 인기있는 여행지
         makeLine();
-        for (int i = 0, j = 1; i < popularity.size(); i++) {
-          System.out.print(popularity.get(i) + "   ");
-          if (i + 1 == 3 * j) {
-            System.out.println();
-            j++;
-          }
-        }
+
+        city.stream()
+            .filter(popul->popul.getTheme()== POPULARITY)
+            .collect(toList())
+            .forEach(popul-> System.out.println(popul));
+
         makeLine();
 
         break;

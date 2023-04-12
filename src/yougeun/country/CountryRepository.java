@@ -20,6 +20,8 @@ public class CountryRepository {
                 , "타이페이",
             , "제주공항" , "\
          */
+        countryMap.put("부산", new Country("부산", 5000,DOMESTIC));
+        countryMap.put("제주도", new Country("제주", 75000,DOMESTIC));
         countryMap.put("상하이", new Country("상하이", 210000, CHINA));
         countryMap.put("베이징", new Country("베이징", 250000, CHINA));
         countryMap.put("칭다오", new Country("칭다오", 245000, CHINA));
