@@ -1,23 +1,20 @@
 package dongwoo;
 
 
-import yougeun.Client.Client;
+import dongwoo.Client.*;
 import yougeun.Client.Gender;
 import yougeun.Utility;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
+import static yougeun.Utility.*;
 import static yougeun.Utility.input;
 
 public class ClientView {
-
-
-
     Scanner sc;
     ClientRepository cr = new ClientRepository();
-
-
-
 
     /**
      * 초기 메인 화면을 출력
@@ -62,25 +59,69 @@ public class ClientView {
 
     public void signUp() {
         //이름입력
-        String name = Utility.input("이름 : ");
+        String name = input("이름 : ");
         //성별확인
+        Gender gender;
         while (true) {
-            int genderNum = Integer.parseInt(Utility.input("성별 : 1.남자 2.여자 "));
-            Gender gender = cr.genderCheck(genderNum);
+            int genderNum = Integer.parseInt(input("성별 : 1.남자 2.여자 "));
+            gender = cr.genderCheck(genderNum);
             if (gender.equals(Gender.MALE) || gender.equals(Gender.FEMALE)) {
                 break;
+            } else {
+                System.out.println("성별을 다시 입력해주세요");
             }
         }
 
         //핸드폰번호입력
+        String userPhone;
         while (true) {
-            String userPhone = Utility.input("휴대폰번호 : ");
-            cr.phoneCheck(userPhone);
-            cr.phoneCheckNum(userPhone);
+            userPhone = input("휴대폰번호 : ");
+            boolean phoneCheck = cr.phoneCheck(userPhone);
+            if (phoneCheck == true) {
+                break;
+            } else {
+                System.out.println("재입력하세요 10~11자리");
+            }
         }
-        //아이디입력
+
+
+        //인증번호 확인
         while (true) {
-            String id = Utility.input("아이디 : ");
+            int radomNum = cr.randomNum();
+
+            int phoneCheckNum = Integer.parseInt(input("인증번호입력 : "));
+            boolean flagPhonCheckNum = cr.phoneCheckNum(phoneCheckNum, radomNum);
+            if (flagPhonCheckNum == true)
+                break;
+        }
+
+
+        //개인메일계정 입력
+        String email = null;
+        while (true) {
+            String email1 = input("개인메일계정 : ");
+            String flagEmailWrite = cr.emailWrite(email1);
+            if (flagEmailWrite == email1) {
+                //도메인입력
+                String email2 = input("메일도메인 : 1.네이버 2.다음 3.카카오 4.기타(직접입력)");
+                String emailDomainResult = cr.emailCheck(email2);
+                email = email1 + "@" + emailDomainResult;
+                System.out.println(email);
+                break;
+            } else {
+                System.out.println("메일을 다시 입력하세요 6~12자리");
+            }
+
+        }
+
+
+        //이메일출력
+
+
+        //아이디입력
+        String id;
+        while (true) {
+            id = input("아이디 : ");
             boolean flagId = cr.idCheck(id);
             if (flagId == true) {
                 System.out.println("사용할 수 있는 아이디입니다");
@@ -90,9 +131,10 @@ public class ClientView {
             }
         }
         //비밀번호 입력
+        String pw;
         while (true) {
-            String pw = Utility.input("비밀번호 : ");
-            String pw2 = Utility.input("비밀번호확인 : ");
+            pw = input("비밀번호 : ");
+            String pw2 = input("비밀번호확인 : ");
             boolean flagPw = cr.pwCheck(pw, pw2);
             if (flagPw == true) {
                 System.out.println("비밀번호 확인");
@@ -103,16 +145,16 @@ public class ClientView {
         }
 
 
-
         while (true) {
-            int age = Integer.parseInt(Utility.input("나이 : "));
+            int age = Integer.parseInt(input("나이 : "));
             boolean flagAge = cr.ageCheck(age);
             if (flagAge == true) break;
             else System.out.println("0~150살 사이 값을 입력하세요");
         }
 
-        Client client=new
+        String location = "시비ㅏㄹ";
+        Client client = new Client(name, gender, userPhone, email, location, id, pw);
         cr.clientList.add(client);
-
+        System.out.println(cr.clientList.get(0).getId());
     }
 }
