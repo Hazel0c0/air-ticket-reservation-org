@@ -1,5 +1,7 @@
 package yougeun.Client;
+
 import jiwon.enumset.Way;
+
 
 public class Ticket {
     private String from;    // 출발지
@@ -18,6 +20,14 @@ public class Ticket {
 
     public String getFrom() {
         return from;
+    }
+
+    public Way getWay() {
+        return way;
+    }
+
+    public void setWay(Way way) {
+        this.way = way;
     }
 
     public void setFrom(String from) {
@@ -40,6 +50,7 @@ public class Ticket {
         this.date = date;
     }
 
+
     public Way getWay() {
         return way;
     }
@@ -47,6 +58,7 @@ public class Ticket {
     public void setWay(Way way) {
         this.way = way;
     }
+
 
     public int getPersonnal() {
         return personnal;

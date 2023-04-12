@@ -28,11 +28,11 @@ public class AirlineSearchView {
 
     ar.destination(input("\n 번호를 선택해주세요"));
 
-    int go;
+    int go=230411;
 //    날짜 어떤식으로 입력하는게 좋을지..
     while (true) {
       go = Integer.parseInt(input("\n# 가는날 \n여섯자리를 정확히 입력해주세요(ex.230411)"));
-      if (go > 230411) {
+      if (go >= 230411) {
         break;
       }
       // 오늘날짜 이후로 선택 가능하게 if
@@ -55,7 +55,7 @@ public class AirlineSearchView {
             "유아는 탑승일 기준 만 2세 미만까지이며,\n" +
             "좌석을 점유하지 않습니다.\n" +
             "---------------------------------------");
-    System.out.println("탑승 인원을 입력해주세요");
+    System.out.println("# 탑승 인원을 입력해주세요");
     String adult = inputDot("성인");
     String child = inputDot("소아");
     String baby = inputDot("유아");
