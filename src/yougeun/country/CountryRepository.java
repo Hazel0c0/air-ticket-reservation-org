@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CountryRepository {
-    static final Map<String, Country> countryMap;
+
+    private static final Map<String, Country> countryMap;
     // 편도 가격, 좌석 등급마다 1배, 1.5배, 2배 *2
     static {
         countryMap = new HashMap<>();
@@ -43,6 +44,8 @@ public class CountryRepository {
         countryMap.put("시드니", new Country("시드니", 620000));
         countryMap.put("오클랜드", new Country("오클랜드", 450000));
     }
-
+    public static Map<String, Country> getCountryMap() {
+        return countryMap;
+    }
 
 }

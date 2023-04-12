@@ -6,6 +6,7 @@ import yougeun.board.BoardView;
 import yougeun.checkin.SeatView;
 import yougeun.myflight.MyPage;
 import yougeun.reservationCheck.ReservationCheck;
+import yougeun.schedule.ScheduleFareCheck;
 
 import static yougeun.Utility.*;
 
@@ -29,7 +30,7 @@ public class SamjoAirLine {
         System.out.println("7. 마일리지 항공권");  //
         System.out.println("8. My FLIGHT");     // 유근
         // 개인 자산 관리, 포인트 관리 ...
-        System.out.println("9. 스케줄/운임 조회"); //
+        System.out.println("9. 스케줄/운임 조회"); // 유근
         System.out.println("0. 로그아웃");      //
         System.out.println("=====================================");
     }
@@ -78,6 +79,7 @@ public class SamjoAirLine {
                 break;
             case 9:
                 System.out.println("스케줄 운임 조회");
+                ScheduleFareCheck.menu();
                 stop();
                 break;
             case 0:
