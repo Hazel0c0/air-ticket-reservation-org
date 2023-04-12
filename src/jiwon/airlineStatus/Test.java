@@ -3,8 +3,7 @@ package jiwon.airlineStatus;
 import jiwon.enumset.Grade;
 import jiwon.enumset.Way;
 
-import static yougeun.Utility.input;
-import static yougeun.Utility.inputDot;
+import static yougeun.Utility.*;
 
 public class Test {
 //  static AirlineRepository ar;
@@ -14,6 +13,11 @@ public class Test {
 //  }
   public static void main(String[] args) {
 
+
+
+
+      new AirlineSearchView().searchView();
+
 //    System.out.println("# 여행 할 도시 선택을 도와드릴게요");
 //    System.out.println("  1. 지금! 인기 여행지");
 //    System.out.println("  2. 테마별 여행지");
@@ -21,7 +25,6 @@ public class Test {
 //
 //    ar.destination(input("\n 번호를 선택해주세요"));
 
-      new AirlineSearchView().searchView();
 
     /*
     String inputGrade = input("좌석 등급을 선택해주세요\n" +
