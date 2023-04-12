@@ -1,6 +1,5 @@
 package yougeun.Client;
 
-
 import jiwon.enumset.Way;
 
 
@@ -51,6 +50,14 @@ public class Ticket {
         this.date = date;
     }
 
+
+    public Way getWay() {
+        return way;
+    }
+
+    public void setWay(Way way) {
+        this.way = way;
+    }
 
 
     public int getPersonnal() {

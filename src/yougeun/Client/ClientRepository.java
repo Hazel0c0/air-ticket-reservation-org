@@ -1,7 +1,6 @@
 package yougeun.Client;
 
 import jiwon.enumset.Way;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
