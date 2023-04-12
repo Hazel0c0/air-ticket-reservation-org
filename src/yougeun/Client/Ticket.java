@@ -55,6 +55,7 @@ public class Ticket {
         this.go = go;
     }
 
+
     public int getComeback() {
         return comeback;
     }
@@ -65,6 +66,7 @@ public class Ticket {
 
     public int getPassenger() {
         return passenger;
+
     }
 
     public void setPassenger(int passenger) {

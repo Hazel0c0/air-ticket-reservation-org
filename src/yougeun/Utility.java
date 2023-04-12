@@ -19,6 +19,12 @@ public class Utility {
         }
     }
 
+
+    // 입력 받은 문자가 #인지 확인하는 함수, true면 스킵 기능으로 씀.
+    public static boolean skip(char a){
+        return a == '#';
+    }
+
     /**
      * 입력을 받는 함수입니다.
      * @param s 입력을 받는 정보를 받는 파라미터
