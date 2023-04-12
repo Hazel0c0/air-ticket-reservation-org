@@ -3,7 +3,7 @@ package dongwoo;
 
 import yougeun.Client.Gender;
 
-public class Test {
+public class Test    {
 
     public static void main(String[] args) {
 
