@@ -1,19 +1,20 @@
 package jiwon.airlineStatus;
 
-import jiwon.StringList;
+import jiwon.enumset.Continent;
 import jiwon.enumset.Theme;
-import yougeun.Client.Ticket;
-import yougeun.Utility;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 import static jiwon.airlineStatus.StatusRepository.city;
+import static jiwon.enumset.Continent.*;
 import static jiwon.enumset.Theme.*;
 import static yougeun.Utility.*;
 
 public class AirlineRepository {
   static List<String> airportList;
+  static String from;
 
   static {
     airportList = new ArrayList<>(
@@ -26,7 +27,6 @@ public class AirlineRepository {
     int i = 1;
     for (String airport : airportList) {
       System.out.println("  " + i + ". " + airport);
-
       i++;
     }
   }
@@ -35,33 +35,13 @@ public class AirlineRepository {
   static String startingPoint(String inputFrom) {
     // 숫자 선택
     int n = Integer.parseInt(inputFrom);
-    return airportList.get(n);
+    from = airportList.get(n);
+    return from;
   }
 
-  static void destination(String inputTo) {
+  static void destination(String inputTo, String from) {
 
 
-    switch (inputTo) {
-      case "1": // 인기있는 여행지
-        makeLine();
-
-        city.stream()
-            .filter(popul->popul.getTheme()== POPULARITY)
-            .collect(toList())
-            .forEach(popul-> System.out.println(popul));
-
-        makeLine();
-
-        break;
-      case "2":
-        String theme = inputDot("# 테마를 선택해주세요");
-        themeTravel(theme);
-
-//        맵으로 선택
-      case "3":
-//        동일
-      default:
-    }
     Map<String, Object> theme = new HashMap<>();
     theme.put("HOT SUMMER! -- ", "11");
     theme.put("초~!특가 여행지", discount);
@@ -70,6 +50,36 @@ public class AirlineRepository {
 //    theme.put("효도 관광", "배열..");
 
   }
+
+  void filterTravel() {
+
+  }
+
+  static Stream<City> filter;
+
+  static void themeTravel(Theme theme) {
+    // 테마별
+    filter = city.stream()
+        .filter(t -> t.getTheme() == theme);
+    filter();
+  }
+  static void continentTravel(Continent ct) {
+    // 국가별
+    filter = city.stream()
+        .filter(c -> c.getContinent() == ct);
+    filter();
+  }
+  static void filter() {
+    filter
+        .collect(toList())
+        .forEach(popul -> {
+          System.out.println("    " + from + " <-> " + popul.getCountryName());
+          System.out.println("    왕복");
+          System.out.println("    KRW " + popul.getFee() * 2);
+          makeLine();
+        });
+  }
+
 
   static List<String> discount = new ArrayList<>(
       Arrays.asList(
