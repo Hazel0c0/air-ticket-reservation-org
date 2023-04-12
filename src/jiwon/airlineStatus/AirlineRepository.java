@@ -1,8 +1,11 @@
 package jiwon.airlineStatus;
 
 import jiwon.StringList;
+import yougeun.Utility;
 
 import java.util.*;
+
+import static yougeun.Utility.*;
 
 public class AirlineRepository {
   static List<String> airportList;
@@ -38,7 +41,7 @@ public class AirlineRepository {
 
     switch (inputTo) {
       case "1":
-        System.out.println("---------------------------------");
+        makeLine();
         for (int i = 0,j=1; i < popularity.size(); i++) {
           System.out.print(popularity.get(i)+"   ");
           if (i+1==3*j) {
@@ -46,7 +49,7 @@ public class AirlineRepository {
             j++;
           }
         }
-        System.out.println("---------------------------------");
+        makeLine();
 
         break;
       case "2":
