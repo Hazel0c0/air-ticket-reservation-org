@@ -1,5 +1,7 @@
 package yougeun.Client;
 
+import java.util.ArrayList;
+
 public class Client {
     private String userName;
     private Gender gender;
@@ -12,8 +14,11 @@ public class Client {
     private Ticket ticket;
     private int point;
     private boolean isAdmin;
+    private ArrayList<String> couponList;
+
 
     public Client(String userName, Gender gender, String userPhone, String email, String location, String id, String password) {
+        couponList = new ArrayList<>();
         this.userName = userName;
         this.gender = gender;
         this.userPhone = userPhone;
@@ -23,7 +28,12 @@ public class Client {
         this.password = password;
     }
 
+    public ArrayList<String> getCouponList() {
+        return couponList;
+    }
+
     public Client(String userName, Gender gender, String userPhone, String email, String location, String id, String password, Card card, int point) {
+        couponList = new ArrayList<>();
         this.userName = userName;
         this.gender = gender;
         this.userPhone = userPhone;
@@ -36,6 +46,7 @@ public class Client {
     }
 
     public Client(String userName, Gender gender, String userPhone, String email, String location, String id, String password, boolean isAdmin) {
+        couponList = new ArrayList<>();
         this.userName = userName;
         this.gender = gender;
         this.userPhone = userPhone;
@@ -47,6 +58,7 @@ public class Client {
     }
 
     public Client(String userName, Gender gender, String userPhone, String email, String location, String id, String password, Card card, Ticket ticket, int point) {
+        couponList = new ArrayList<>();
         this.userName = userName;
         this.gender = gender;
         this.userPhone = userPhone;
