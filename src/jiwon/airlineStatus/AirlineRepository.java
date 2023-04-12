@@ -1,6 +1,7 @@
 package jiwon.airlineStatus;
 
 import jiwon.StringList;
+import yougeun.Client.Ticket;
 import yougeun.Utility;
 
 import java.util.*;
@@ -34,6 +35,7 @@ public class AirlineRepository {
   }
 
   static void destination(String inputTo) {
+
     List<String> popularity = new ArrayList<>(
         Arrays.asList("오사카", "후쿠오카", "타이페이", "도쿄"
             , "제주공항", "홍콩 국제", "방콕", "오키나와 나하", "괌 A.B. 원팟")
@@ -42,9 +44,9 @@ public class AirlineRepository {
     switch (inputTo) {
       case "1":
         makeLine();
-        for (int i = 0,j=1; i < popularity.size(); i++) {
-          System.out.print(popularity.get(i)+"   ");
-          if (i+1==3*j) {
+        for (int i = 0, j = 1; i < popularity.size(); i++) {
+          System.out.print(popularity.get(i) + "   ");
+          if (i + 1 == 3 * j) {
             System.out.println();
             j++;
           }
@@ -53,15 +55,34 @@ public class AirlineRepository {
 
         break;
       case "2":
+        String theme = inputDot("# 테마를 선택해주세요");
+
+
 //        맵으로 선택
       case "3":
 //        동일
       default:
     }
-    Map<String, Object> destination = new HashMap<>();
-
-    destination.put("휴양지", "괌");
-    destination.put("이색 여행지", "배열..");
+    Map<String, Object> theme = new HashMap<>();
+    theme.put("HOT SUMMER! -- ", "11");
+    theme.put("초~!특가 여행지", discount);
+    theme.put("이색 여행지", "배열..");
+//    theme.put("휴양지", "22");
+//    theme.put("효도 관광", "배열..");
 
   }
+
+  static List<String> discount = new ArrayList<>(
+      Arrays.asList(
+          "서울 / 인천 <-> 로스앤젤레스\n왕복\nKRW 1,502,700~",
+          "서울 / 인천 <-> 프랑크푸르트\n왕복\nKRW 1,353,200~",
+          "서울 / 인천 <-> 호놀룰루\n왕복\nKRW 1,054,500~"
+      )
+  );
+
+  void discount() {
+
+  }
+
+
 }
