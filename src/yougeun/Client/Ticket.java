@@ -51,13 +51,13 @@ public class Ticket {
     }
 
 
-    public Way getWay() {
-        return way;
-    }
-
-    public void setWay(Way way) {
-        this.way = way;
-    }
+//    public Way getWay() {
+//        return way;
+//    }
+//
+//    public void setWay(Way way) {
+//        this.way = way;
+//    }
 
 
     public int getPersonnal() {
