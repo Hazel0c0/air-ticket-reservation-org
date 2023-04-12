@@ -18,6 +18,16 @@ public class City {
     this.theme =Theme.NORMAL;
   }
 
+  @Override
+  public String toString() {
+    return "City{" +
+        "countryName='" + countryName + '\'' +
+        ", fee=" + fee +
+        ", continent=" + continent +
+        ", theme=" + theme +
+        '}';
+  }
+
   public City(String countryName, int fee, jiwon.enumset.Continent continent, Theme theme) {
     this.countryName = countryName;
     this.fee = fee;
