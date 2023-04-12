@@ -16,7 +16,7 @@ public class Test {
 
 
 
-//      new AirlineSearchView().searchView();
+      new AirlineSearchView().searchView();
 
 //    System.out.println("# 여행 할 도시 선택을 도와드릴게요");
 //    System.out.println("  1. 지금! 인기 여행지");
