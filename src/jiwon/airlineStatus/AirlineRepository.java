@@ -1,14 +1,20 @@
 package jiwon.airlineStatus;
 
-import jiwon.StringList;
-import yougeun.Utility;
+import jiwon.enumset.Continent;
+import jiwon.enumset.Theme;
 
 import java.util.*;
+import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.toList;
+import static jiwon.airlineStatus.StatusRepository.city;
+import static jiwon.enumset.Continent.*;
+import static jiwon.enumset.Theme.*;
 import static yougeun.Utility.*;
 
 public class AirlineRepository {
   static List<String> airportList;
+  static String from;
 
   static {
     airportList = new ArrayList<>(
@@ -21,7 +27,6 @@ public class AirlineRepository {
     int i = 1;
     for (String airport : airportList) {
       System.out.println("  " + i + ". " + airport);
-
       i++;
     }
   }
@@ -30,38 +35,88 @@ public class AirlineRepository {
   static String startingPoint(String inputFrom) {
     // 숫자 선택
     int n = Integer.parseInt(inputFrom);
-    return airportList.get(n);
+    from = airportList.get(n);
+    return from;
   }
 
-  static void destination(String inputTo) {
-    List<String> popularity = new ArrayList<>(
-        Arrays.asList("오사카", "후쿠오카", "타이페이", "도쿄"
-            , "제주공항", "홍콩 국제", "방콕", "오키나와 나하", "괌 A.B. 원팟")
-    );
+  static void destination(String inputTo, String from) {
 
-    switch (inputTo) {
-      case "1":
-        makeLine();
-        for (int i = 0,j=1; i < popularity.size(); i++) {
-          System.out.print(popularity.get(i)+"   ");
-          if (i+1==3*j) {
-            System.out.println();
-            j++;
-          }
-        }
-        makeLine();
 
-        break;
-      case "2":
-//        맵으로 선택
-      case "3":
-//        동일
-      default:
+    Map<String, Object> theme = new HashMap<>();
+    theme.put("HOT SUMMER! -- ", "11");
+    theme.put("초~!특가 여행지", discount);
+    theme.put("이색 여행지", "배열..");
+//    theme.put("휴양지", "22");
+//    theme.put("효도 관광", "배열..");
+
+  }
+
+  void filterTravel() {
+
+  }
+
+  static Stream<City> filter;
+
+  static void themeTravel(Theme theme) {
+    // 테마별
+    filter = city.stream()
+        .filter(t -> t.getTheme() == theme);
+    filter();
+  }
+  static void continentTravel(Continent ct) {
+    // 국가별
+    filter = city.stream()
+        .filter(c -> c.getContinent() == ct);
+    filter();
+  }
+  static void filter() {
+    filter
+        .collect(toList())
+        .forEach(popul -> {
+          System.out.println("    " + from + " <-> " + popul.getCountryName());
+          System.out.println("    왕복");
+          System.out.println("    KRW " + popul.getFee() * 2);
+          makeLine();
+        });
+  }
+
+
+  static List<String> discount = new ArrayList<>(
+      Arrays.asList(
+          "서울 / 인천 <-> 로스앤젤레스\n왕복\nKRW 1,502,700~",
+          "서울 / 인천 <-> 프랑크푸르트\n왕복\nKRW 1,353,200~",
+          "서울 / 인천 <-> 호놀룰루\n왕복\nKRW 1,054,500~"
+      )
+  );
+
+  private static void themeTravel(String theme) {
+
+    Map<String, Object> themeTravel = new HashMap<>();
+    //여름 휴가지
+    themeTravel.put("1", "## HOT SUMMER! -- ");
+    // 특가 여행지
+//    themeTravel.put("2", discount);
+    // 이색 여행지
+    themeTravel.put("3", "## 이색 여행지");
+    //    theme.put("휴양지", "22");
+    //    theme.put("효도 관광", "배열..");
+
+    if (themeTravel.containsKey(theme)) {
+      System.out.println(themeTravel.get(theme));
     }
-    Map<String, Object> destination = new HashMap<>();
-
-    destination.put("휴양지", "괌");
-    destination.put("이색 여행지", "배열..");
-
   }
+//  static List<String> discount = new ArrayList<>(
+//      Arrays.asList(
+//          "## 초~!특가 여행지",
+//          "----------------------------------------------\n",
+//          "서울 / 인천 <-> 로스앤젤레스\n왕복\nKRW 1,502,700~",
+//          "\n----------------------------------------------\n",
+//          "서울 / 인천 <-> 프랑크푸르트\n왕복\nKRW 1,353,200~",
+//          "\n----------------------------------------------\n",
+//          "서울 / 인천 <-> 호놀룰루\n왕복\nKRW 1,054,500~",
+//          "\n----------------------------------------------"
+//      )
+//  );
+
+
 }

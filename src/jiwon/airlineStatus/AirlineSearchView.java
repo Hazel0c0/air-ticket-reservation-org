@@ -2,6 +2,9 @@ package jiwon.airlineStatus;
 
 import jiwon.enumset.Grade;
 
+import static jiwon.airlineStatus.AirlineRepository.*;
+import static jiwon.enumset.Continent.CHINA;
+import static jiwon.enumset.Theme.POPULARITY;
 import static yougeun.Utility.*;
 
 // 항공편 현황
@@ -26,9 +29,36 @@ public class AirlineSearchView {
     System.out.println("  2. 테마별 여행지");
     System.out.println("  3. 전체 도시 보기");
 
-    ar.destination(input("\n 번호를 선택해주세요"));
+    String inputTo = input("\n 번호를 선택해주세요");
 
-    int go=230411;
+    String msg = "여행을 떠나고 싶은 나라를 선택해주세요";
+    switch (inputTo) {
+      case "1": // 인기있는 여행지
+        System.out.println("\n*** 이번달 인기 여행지 입니다 ***");
+        makeLine();
+        themeTravel(POPULARITY);
+        input(msg);
+        break;
+      case "2":
+        String theme = inputDot("# 테마를 선택해주세요");
+        themeTravel(null);
+        break;
+      case "3":
+        System.out.println("1. 국내");
+        System.out.println("2. 중화권");
+        System.out.println("3. 일본");
+        System.out.println("4. 동남아");
+        System.out.println("5. 미주");
+        System.out.println("6. 유럽");
+        System.out.println("7. 대양주");
+        String selContinent = inputDot("# 선택해주세요 ");
+//        continentTravel(selContinent);
+        continentTravel(CHINA);
+        break;
+      default:
+    }
+
+    int go = 230411;
 //    날짜 어떤식으로 입력하는게 좋을지..
     while (true) {
       go = Integer.parseInt(input("\n# 가는날 \n여섯자리를 정확히 입력해주세요(ex.230411)"));
@@ -50,7 +80,7 @@ public class AirlineSearchView {
 
     makeLine();
     System.out.println(
-            "\n전 구간에 소아와 함께 여행하는 동반 성인이 있을 경우,\n" +
+        "\n전 구간에 소아와 함께 여행하는 동반 성인이 있을 경우,\n" +
             "소아 단독 항공권 구매가 가능합니다.\n" +
             "유아는 탑승일 기준 만 2세 미만까지이며,\n" +
             "좌석을 점유하지 않습니다.\n");

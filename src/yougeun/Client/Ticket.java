@@ -5,17 +5,22 @@ import jiwon.enumset.Way;
 
 public class Ticket {
     private String from;    // 출발지
-    private String to;  // 도착지
-    private int date;   // 탑승일
+    private String destination;  // 도착지
+    private int go;   // 탑승일
+    private int comeback; //도착일
     private Way way; // 왕복 & 편도
-    private int personnal; // 총 인원
+    private int passenger; // 총 인원
 
-    public Ticket(String from, String to, int date, Way way, int personnal) {
+    public Ticket() {
+    }
+
+    public Ticket(String from, String to, int date, Way way, int personnal, int go, int comeback, int passenger) {
         this.from = from;
-        this.to = to;
-        this.date = date;
+        this.destination = to;
+        this.go = go;
+        this.comeback = comeback;
+        this.passenger = passenger;
         this.way = way;
-        this.personnal = personnal;
     }
 
     public String getFrom() {
@@ -34,28 +39,38 @@ public class Ticket {
         this.from = from;
     }
 
-    public String getTo() {
-        return to;
+    public String getDestination() {
+        return destination;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
-    public int getDate() {
-        return date;
+    public int getGo() {
+        return go;
     }
 
-    public void setDate(int date) {
-        this.date = date;
+    public void setGo(int go) {
+        this.go = go;
     }
 
 
-    public int getPersonnal() {
-        return personnal;
+    public int getComeback() {
+        return comeback;
     }
 
-    public void setPersonnal(int personnal) {
-        this.personnal = personnal;
+    public void setComeback(int comeback) {
+        this.comeback = comeback;
+    }
+
+    public int getPassenger() {
+        return passenger;
+
+    }
+
+    public void setPassenger(int passenger) {
+        this.passenger = passenger;
     }
 }
+

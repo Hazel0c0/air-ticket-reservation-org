@@ -1,5 +1,6 @@
 package yougeun.country;
 
+
 public class Country {
     private String countryName;
     private int fee;    // 편도 요금

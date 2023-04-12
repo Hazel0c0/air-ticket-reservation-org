@@ -1,50 +1,28 @@
+
+
 package jiwon.airlineStatus;
 
-import jiwon.enumset.Grade;
-import jiwon.enumset.Way;
 
-import static yougeun.Utility.*;
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
+import static jiwon.airlineStatus.AirlineRepository.from;
+import static jiwon.airlineStatus.StatusRepository.city;
+import static jiwon.enumset.Theme.POPULARITY;
+import static yougeun.Utility.inputDot;
+import static yougeun.Utility.makeLine;
 
 public class Test {
-//  static AirlineRepository ar;
-//
-//  static {
-//    ar = new AirlineRepository();
-//  }
+
   public static void main(String[] args) {
+// 스트링 리스트로 새로 담기
+//    List<String> theme= city.stream()
+//        .filter(popul -> popul.getTheme() == POPULARITY)
+//        .collect(toList());
+//    System.out.println(theme);
 
-
-
-
-      new AirlineSearchView().searchView();
-
-//    System.out.println("# 여행 할 도시 선택을 도와드릴게요");
-//    System.out.println("  1. 지금! 인기 여행지");
-//    System.out.println("  2. 테마별 여행지");
-//    System.out.println("  3. 전체 도시 보기");
-//
-//    ar.destination(input("\n 번호를 선택해주세요"));
-
-
-    /*
-    String inputGrade = input("좌석 등급을 선택해주세요\n" +
-        "1. ECONOMY  2. PRESTIGE  3. FIRST");
-    Grade grade = seatGrade(inputGrade);
-
+    AirlineSearchView.searchView();
   }
-  private static Grade seatGrade(String n) {
-    switch (n) {
-      case "1":
-        return Grade.ECONOMY;
-      case "2":
-        return Grade.PRESTIGE;
-      case "3":
-        return Grade.FIRST;
-      default:
-        System.out.println("숫자를 정확히 입력해주세요");
-        return null;
-    }
 
-     */
-  }
 }
+

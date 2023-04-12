@@ -44,11 +44,11 @@ public class ReservationCheck {
 
     // 티켓의 정보를 알려주는 함수
     public static void info(Ticket ticket){
-        System.out.println("날짜 : " + ticket.getDate() );
+        System.out.println("날짜 : " + ticket.getGo() );
         System.out.println("출발지 : " + ticket.getFrom());
-        System.out.println("도착지 : " + ticket.getTo() );
+        System.out.println("도착지 : " + ticket.getDestination() );
         System.out.println("왕복|편도 : " + ticket.getWay() );
-        System.out.println("총인원 : " + ticket.getPersonnal() );
+        System.out.println("총인원 : " + ticket.getPassenger() );
     }
 
 }
