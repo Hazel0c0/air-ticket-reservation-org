@@ -1,2 +1,3 @@
-package jiwon.airlineStatus;public class AirlineStatus {
+package jiwon.airlineStatus;
+public class AirlineStatus {
 }
