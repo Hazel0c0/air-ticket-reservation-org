@@ -30,13 +30,13 @@ public class StatusRepository {
             new City("후쿠오카", 183200, JAPAN, POPULARITY),
             new City("오키나와 나하", 124900, JAPAN, POPULARITY),
             new City("삿포로", 103300, JAPAN),
-            new City("나고야", 184900, JAPAN),
+            new City("나고야", 184900, JAPAN, UNUSUAL),
             new City("하노이", 224900, SOUTHEAST_ASIA),
             new City("다낭", 243800, SOUTHEAST_ASIA),
             new City("방콕", 283300, SOUTHEAST_ASIA, POPULARITY),
             new City("마닐라", 310000, SOUTHEAST_ASIA),
-            new City("세부", 323000, SOUTHEAST_ASIA),
-            new City("발리", 340000, SOUTHEAST_ASIA),
+            new City("세부", 323000, SOUTHEAST_ASIA, SEASON),
+            new City("발리", 340000, SOUTHEAST_ASIA, SEASON),
             new City("로스엔젤레스", 625000, AMERICA),
             new City("뉴욕", 680000, AMERICA),
             new City("시애틀", 450000, AMERICA),
@@ -50,7 +50,8 @@ public class StatusRepository {
             new City("괌 A.B. 원팟", 222000, OCEANIA, POPULARITY),
             new City("사이판", 338000, OCEANIA),
             new City("시드니", 620000, OCEANIA),
-            new City("오클랜드", 450000, OCEANIA)
+            new City("오클랜드", 450000, OCEANIA),
+            new City("라스베가스", 1450000, AMERICA)
         ));
   }
 

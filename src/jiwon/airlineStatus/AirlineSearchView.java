@@ -1,26 +1,30 @@
 package jiwon.airlineStatus;
 
+import jiwon.enumset.Continent;
 import jiwon.enumset.Grade;
+import jiwon.enumset.Theme;
 
 import static jiwon.airlineStatus.AirlineRepository.*;
+import static jiwon.airlineStatus.AirlineRepository.pickContinent;
 import static jiwon.enumset.Continent.CHINA;
 import static jiwon.enumset.Theme.POPULARITY;
+import static jiwon.enumset.Theme.SEASON;
 import static yougeun.Utility.*;
 
 // 항공편 현황
 public class AirlineSearchView {
-  static AirlineRepository ar;
+//  static AirlineRepository ar;
 
   static {
-    ar = new AirlineRepository();
+//    ar = new AirlineRepository();
   }
 
   public static void searchView() {
     System.out.println("===== 항공권 예매 =====");
 
     /* [+] 출발지 (일부) 입력하면 출발지 목록 보여주는 기능 */
-    ar.airportList(); // 출발지 목록
-    String airport = ar.startingPoint(input("\n# 출발지를 선택해주세요"));
+    airportList(); // 출발지 목록
+    String airport = startingPoint(input("\n# 출발지를 선택해주세요"));
     System.out.println("[ 선택하신 공항은 " + airport + "입니다 ]\n");
 
     /* 출발지 입력되면 가지 못하는 도착지 지워지게 */
@@ -40,8 +44,11 @@ public class AirlineSearchView {
         input(msg);
         break;
       case "2":
-        String theme = inputDot("# 테마를 선택해주세요");
-        themeTravel(null);
+        Theme pickTheme=themeChangeNum(inputDot("# 테마를 선택해주세요"));
+        System.out.println("1. HOT SUMMER!");
+        System.out.println("2. 초~!특가 여행지");
+        System.out.println("3. 이색 여행지");
+        themeTravel(pickTheme);
         break;
       case "3":
         System.out.println("1. 국내");
@@ -51,9 +58,10 @@ public class AirlineSearchView {
         System.out.println("5. 미주");
         System.out.println("6. 유럽");
         System.out.println("7. 대양주");
-        String selContinent = inputDot("# 선택해주세요 ");
+        Continent pickContinent =pickContinent(inputDot("# 번호를 선택해주세요 "));
+        // 번호로만 선택받을지, 글자로도 받을지
 //        continentTravel(selContinent);
-        continentTravel(CHINA);
+        continentTravel(pickContinent);
         break;
       default:
     }
