@@ -14,7 +14,7 @@ public class Client {
     private Ticket ticket;
     private int point;
     private boolean isAdmin;
-    private ArrayList<String> couponList;
+    private final ArrayList<String> couponList;
 
 
     public Client(String userName, Gender gender, String userPhone, String email, String location, String id, String password) {

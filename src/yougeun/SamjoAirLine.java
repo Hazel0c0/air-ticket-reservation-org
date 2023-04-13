@@ -1,5 +1,6 @@
 package yougeun;
 
+import jiwon.airlineStatus.AirlineSearchView;
 import yougeun.Client.Client;
 import yougeun.Client.ClientRepository;
 import yougeun.airlineInfo.AirlineInfoView;
@@ -46,10 +47,12 @@ public class SamjoAirLine {
 
         switch (selectMenu){
             case 1:
+                AirlineSearchView.searchView(client);
                 System.out.println("국내선 예매");
                 stop();
                 break;
             case 2:
+                AirlineSearchView.searchView(client);
                 System.out.println("국제선 예매");
                 stop();
                 break;
@@ -62,7 +65,7 @@ public class SamjoAirLine {
                 BoardView.run();
                 break;
             case 5:
-                SeatView.checkin();
+                SeatView.checkin(client);
                 stop();
                 break;
             case 6:
@@ -88,7 +91,7 @@ public class SamjoAirLine {
             case 0:
                 System.out.println("로그아웃");
                 stop();
-                break;
+                return;
             default:
                 inputError();
                 System.out.println("지원되는 번호 : [1번~0번]");

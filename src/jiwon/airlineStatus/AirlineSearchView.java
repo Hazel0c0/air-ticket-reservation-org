@@ -3,6 +3,8 @@ package jiwon.airlineStatus;
 import jiwon.enumset.Continent;
 import jiwon.enumset.Grade;
 import jiwon.enumset.Theme;
+import yougeun.Client.Client;
+import yougeun.Client.Ticket;
 import yougeun.Utility;
 
 import java.time.DateTimeException;
@@ -22,7 +24,8 @@ public class AirlineSearchView {
     ar = new AirlineRepository();
   }
 
-  public static void searchView() {
+  public static void searchView(Client client) {
+    Ticket ticket = client.getTicket();
     System.out.println("===== 항공권 예매 =====");
 
     /* [+] 출발지 (일부) 입력하면 출발지 목록 보여주는 기능 */
@@ -156,7 +159,6 @@ public class AirlineSearchView {
 //        System.out.println("!! 오늘날을 다시 입력해주세요.");
 //      }
     }
-
     makeLine();
     System.out.println(
         "\n전 구간에 소아와 함께 여행하는 동반 성인이 있을 경우,\n" +
@@ -167,7 +169,7 @@ public class AirlineSearchView {
     System.out.println("# 탑승 인원을 입력해주세요");
     String adult = inputDot("성인");
     String child = inputDot("소아");
-    String baby = inputDot("유아");
+    String baby = inputDot("유아"); // 요금 없음
 
     String way = input("\n  [ 1. 왕복   2. 편도 ]");
     //  ROUND_TRIP, ONE_WAY
@@ -191,6 +193,7 @@ public class AirlineSearchView {
         return null;
     }
   }
+
 
 
 }
