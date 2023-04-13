@@ -20,6 +20,14 @@ public class ClientRepository {
     List<Client> clientList = new ArrayList<>();
 
 
+    //이름확인
+    public boolean nameCheck(String name){
+        if (name.length()>=2&&name.length()<=5){
+            return true;
+        }
+        return false;
+    }
+
     //성별확인
     public Gender genderCheck(int genderNum) {
         switch (genderNum) {
@@ -42,30 +50,46 @@ public class ClientRepository {
     }
 
 
-    //도메인 입력
-    public String emailCheck(String email2){
-        String naver="naver.com";
-        String daum="daum.com";
-        String kakao="kako.co.kr";
-        String domain=sc.nextLine();
-
-       switch (email2){
-           case "1":
-               return naver;
-           case "2":
-               return daum;
-           case "3":
-               return kakao;
-           case "4":
-               return domain;
-           default:
-               return "다시입력하세요";
-       }
 
 
+
+    //도메인 배열 생성
+
+    String[] domainName = new String[4];
+    public String emailDomain(int email2) {
+
+        String naver = "naver.com";
+        String daum = "daum.com";
+        String kakao = "kako.co.kr";
+        String domain = sc.nextLine();
+        domainName[0]=naver;
+        domainName[1]=daum;
+        domainName[2]=kakao;
+        domainName[3]=domain;
+
+        return domainName[email2-1];
+
+        }
+
+        //도메인 입력 확인
+
+    public boolean domainPush(int email2){
+           if (email2>0&&email2<5){
+               return true;
+        }
+                return false;
     }
 
 
+//    주소입력
+    public boolean addressCheck(String location){
+        System.out.println(location);
+        String answerNum = Utility.input("입력한주소가맞으신가요?\n1.네 2.아니오");
+        switch (answerNum){
+            case "1": return true;
+        }
+        return false;
+    }
 
 
     //휴대폰번호 인증문자
@@ -99,17 +123,29 @@ public class ClientRepository {
     }
 
 
-    //아이디 중복 확인
+    //가입 아이디 중복 확인
     public boolean idCheck(String id) {
         for (int i = 0; i < clientList.size(); i++) {
             boolean flagId = clientList.get(i).equals(id);    //get.getid수정필요
             if (!flagId == false) {
                 System.out.println("중복아이디, 재입력하세요");
+                return !flagId;
             } else {
                 return flagId;
             }
         }
         return true;
+    }
+
+    //가입 아이디 글자수  제한
+    public boolean idLength(String id){
+        if(id.length()>=6&&id.length()<=12) {
+            return true;
+        }else {
+
+            return false;
+
+        }
     }
 
     //비밀번호 확인
@@ -136,8 +172,31 @@ public class ClientRepository {
     }
 
     //데이터 회원정보 입력
-//    public List<Client> push(String name,String id, String pw,Gender gender, int age){
-//
-//        clientList.add(name,id,pw,gender,age);
-//    }
+    public boolean checkIdSignUp(String writeId){
+        for (int i = 0; i <clientList.size() ; i++) {
+            if (clientList.get(i).getId().equals(writeId)){
+                    return true;
+        }else {
+                return false;
+            }
+
+
+        }
+
+        return false;
+    }
+    public boolean checkPwSignUp(String writePw){
+        for (int i = 0; i <clientList.size() ; i++) {
+            if (clientList.get(i).getPassword().equals(writePw)){
+                    return true;
+        }else {
+                return false;
+            }
+
+
+        }
+
+        return false;
+    }
+
 }

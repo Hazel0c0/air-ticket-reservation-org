@@ -38,7 +38,7 @@ public class ClientView {
                     signUp();
                     break;
                 case "2":
-//                    login();
+                    login();
                     break;
                 case "0":
                     String answer = input("# 정말로 종료합니까? [y/n] : ");
@@ -59,7 +59,18 @@ public class ClientView {
 
     public void signUp() {
         //이름입력
-        String name = input("이름 : ");
+        String name;
+        while (true) {
+            name = input("이름 : ");
+            boolean flagName = cr.nameCheck(name);
+            if (flagName == true) {
+                break;
+            } else {
+                System.out.println("이름을 다시 입력해주세요 (2~5글자)");
+            }
+        }
+
+
         //성별확인
         Gender gender;
         while (true) {
@@ -75,7 +86,7 @@ public class ClientView {
         //핸드폰번호입력
         String userPhone;
         while (true) {
-            userPhone = input("휴대폰번호 : ");
+            userPhone = input("휴대폰번호(-제외 숫자만 입력하세요) : ");
             boolean phoneCheck = cr.phoneCheck(userPhone);
             if (phoneCheck == true) {
                 break;
@@ -99,62 +110,124 @@ public class ClientView {
         //개인메일계정 입력
         String email = null;
         while (true) {
-            String email1 = input("개인메일계정 : ");
+            String email1 = input("@앞 메일 주소를 입력해주세요 ex)myblog0419 : ");
             String flagEmailWrite = cr.emailWrite(email1);
             if (flagEmailWrite == email1) {
                 //도메인입력
-                String email2 = input("메일도메인 : 1.네이버 2.다음 3.카카오 4.기타(직접입력)");
-                String emailDomainResult = cr.emailCheck(email2);
-                email = email1 + "@" + emailDomainResult;
-                System.out.println(email);
-                break;
+                String s = input("메일도메인 : 1.네이버 2.다음 3.카카오 4.기타(직접입력)");
+                int email2 = Integer.parseInt(s);
+                String emailDomainResult = cr.emailDomain(email2);
+                boolean flagDomain = cr.domainPush(email2);
+                if (flagDomain == true) {
+                    email = email1 + "@" + emailDomainResult;
+                    System.out.println(email);
+                    break;
+                }
             } else {
                 System.out.println("메일을 다시 입력하세요 6~12자리");
             }
 
         }
 
-
-        //이메일출력
+        //주소입력
+        String location = null;
+        while (true) {
+            location = input("주소를 입력하세요 ex) xx시 xx구 xx동 + 기타주소");
+            boolean flagLocation = cr.addressCheck(location);
+            if (flagLocation == true) {
+                break;
+            } else {
+                System.out.println("다시입력하세요");
+            }
+        }
 
 
         //아이디입력
         String id;
-        while (true) {
-            id = input("아이디 : ");
-            boolean flagId = cr.idCheck(id);
-            if (flagId == true) {
-                System.out.println("사용할 수 있는 아이디입니다");
-                System.out.println("아이디 확인");
+            while (true) {
+                id = input("아이디 : ");
+                boolean flagId = cr.idCheck(id);
+                boolean idLength = cr.idLength(id);
 
+                if (flagId == true && idLength == true) {
+                    System.out.println("사용할 수 있는 아이디입니다");
+                    System.out.println("아이디 확인");
+                    break;
+
+                } else {
+                    System.out.println("이미 가입된 아이디 또는 6~12자리 사이 글자 입력해주세요");
+
+                }
+
+            }
+
+            //비밀번호 입력
+            String pw;
+            while (true) {
+                pw = input("비밀번호 : ");
+                String pw2 = input("비밀번호확인 : ");
+                boolean flagPw = cr.pwCheck(pw, pw2);
+                if (flagPw == true) {
+                    System.out.println("비밀번호 확인");
+                    break;
+                } else {
+                    System.out.println("비밀번호가 일치하지 않습니다 재입력하세요");
+                }
+
+            }
+            //나이입력
+            int age;
+            while (true) {
+                age = Integer.parseInt(input("나이 : "));
+                boolean flagAge = cr.ageCheck(age);
+                if (flagAge == true) {
+                    System.out.println("로그인 완료");
+                    break;
+                } else {
+                    System.out.println("0~150살 사이 값을 입력하세요");
+                }
+            }
+
+            Client client = new Client(name, gender, userPhone, email, location, id, pw, age);
+            cr.clientList.add(client);
+            System.out.println(cr.clientList.get(0).getUserName());
+            System.out.println(cr.clientList.get(0).getGender());
+            System.out.println(cr.clientList.get(0).getUserPhone());
+            System.out.println(cr.clientList.get(0).getEmail());
+            System.out.println(cr.clientList.get(0).getLocation());
+            System.out.println(cr.clientList.get(0).getId());
+            System.out.println(cr.clientList.get(0).getPassword());
+
+        }
+
+
+    //로그인화면
+    private void login() {
+        //아이디로그인
+        while (true) {
+            String writeId = input("아이디를 입력하세요 : ");
+            boolean flagIdSignUp = cr.checkIdSignUp(writeId);
+            if (flagIdSignUp == true) {
+                System.out.println("Id 확인");
                 break;
+            }else {
+                System.out.println("존재하지 않는 아이디입니다. 다시 입력해주세요");
             }
         }
-        //비밀번호 입력
-        String pw;
+        //비밀번호 로그인
         while (true) {
-            pw = input("비밀번호 : ");
-            String pw2 = input("비밀번호확인 : ");
-            boolean flagPw = cr.pwCheck(pw, pw2);
-            if (flagPw == true) {
-                System.out.println("비밀번호 확인");
+            String writePw = input("비밀번호를 입력하세요 : ");
+            boolean flagPwSignUp = cr.checkPwSignUp(writePw);
+            if (flagPwSignUp == true) {
+                System.out.println("Pw 확인");
+                System.out.println("로그인완료");
                 break;
-            } else {
-                System.out.println("비밀번호가 일치하지 않습니다 재입력하세요");
+            }else {
+                System.out.println("존재하지 않는 비밀번호입니다. 다시 입력해주세요");
+
             }
         }
 
-
-        while (true) {
-            int age = Integer.parseInt(input("나이 : "));
-            boolean flagAge = cr.ageCheck(age);
-            if (flagAge == true) break;
-            else System.out.println("0~150살 사이 값을 입력하세요");
-        }
-
-        String location = "시비ㅏㄹ";
-        Client client = new Client(name, gender, userPhone, email, location, id, pw);
-        cr.clientList.add(client);
-        System.out.println(cr.clientList.get(0).getId());
     }
+
 }
