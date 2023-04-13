@@ -43,7 +43,6 @@ public class AirlineSearchView {
     switch (inputTo) {
       case "1": // 인기있는 여행지
         System.out.println("\n*** 이번달 인기 여행지 입니다 ***");
-        makeLine();
         ar.choiceCity(POPULARITY);
         break;
       case "2":
@@ -66,11 +65,13 @@ public class AirlineSearchView {
         ar.choiceCity(pickContinent);
         break;
       default:
+        System.out.println("번호를 정확히 입력해주세요");
     }
+    stopInput("선택하신 항공권 확인해드리겠습니다. \n맞다면 enter를 눌러주세요!");
+
     LocalDate today = LocalDate.now();
     LocalDate go = null;
     String goInput = "230411";
-//    날짜 어떤식으로 입력하는게 좋을지..
     while (true) {
       System.out.println("오늘 날짜 " + today);
       goInput = input("\n# 가는날 \n여섯자리를 정확히 입력해주세요(ex.230411)");

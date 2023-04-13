@@ -18,6 +18,14 @@ public class Utility {
             throw new RuntimeException(e);
         }
     }
+    public static void stopInput(String s){
+        try {
+            System.out.println(s);
+            br.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     // 공백을 출력하는 함수

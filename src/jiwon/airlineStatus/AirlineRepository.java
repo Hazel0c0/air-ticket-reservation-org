@@ -4,7 +4,6 @@ import jiwon.enumset.Continent;
 import jiwon.enumset.Theme;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 import static jiwon.airlineStatus.AirlineInfo.city;
@@ -21,7 +20,7 @@ public class AirlineRepository {
   // 출발지
   static {
     airportList = new ArrayList<>(
-        Arrays.asList("서울 / 인천", "서울 / 김포", "제주", "광주", "여수", "청주", "대구", "부산 / 김해")
+        Arrays.asList("서울/인천", "서울/김포", "제주", "광주", "여수", "청주", "대구", "부산 / 김해")
     );
   }
 
@@ -38,29 +37,34 @@ public class AirlineRepository {
   static String startingPoint(String inputFrom) {
     // 숫자 선택
     int n = Integer.parseInt(inputFrom);
-    from = airportList.get(n);
+    from = airportList.get(n-1);
     return from;
   }
 
 
 //도착지 선택
   public void choiceCity(Object o) {
-    choice(o);
-    pickCity(input("여행을 떠나고 싶은 나라를 선택해주세요"));
+    makeLine();
+    ThemeAndContinent(o);
+    String pick = input("여행을 떠나고 싶은 나라를 선택해주세요");
+    makeLine();
+    pickCity(pick);
   }
 
   // 테마, 나라별 여행지 선택
-  private void choice(Object o) {
+  private void ThemeAndContinent(Object o) {
     city.stream()
         .filter(t -> t.getChoice(o) == o)
         .collect(toList())
-        .forEach(t -> {
-          System.out.println("    " + from + " <-> " + t.getCountryName());
-          System.out.println("    왕복");
-          System.out.println("    KRW " + t.getFee() * 2);
-          makeLine();
-        });
+        .forEach(City::cityView);
   }
+  private void pickCity(String input) {
+    City findCity = city.stream()
+        .filter(c -> c.getCountryName().equals(input))
+        .findFirst().get();
+    findCity.cityView();
+  }
+
    public Theme themeChangeNum(String inputTheme) {
     switch (inputTheme) {
       case "1":
@@ -85,12 +89,7 @@ public class AirlineRepository {
 
     return cMap.get(s);
   }
-   private void pickCity(String input) {
-    List<City> pickCity = city.stream()
-        .filter(c -> c.getCountryName().equals(input))
-        .collect(toList());
-    System.out.println(pickCity);
-  }
+
 
 }
 

@@ -2,6 +2,8 @@ package jiwon.airlineStatus;
 
 import jiwon.enumset.Theme;
 
+import static yougeun.Utility.makeLine;
+
 public class City {
   private String countryName;
   private int fee;    // 편도 요금
@@ -26,6 +28,13 @@ public class City {
         ", continent=" + continent +
         ", theme=" + theme +
         '}';
+  }
+
+  public void cityView(){
+    System.out.println("    " + "from" + " <-> " + countryName);
+    System.out.println("    왕복");
+    System.out.println("    KRW " + fee * 2);
+    makeLine();
   }
 
   public City(String countryName, int fee, jiwon.enumset.Continent continent, Theme theme) {
