@@ -146,17 +146,17 @@ public class ClientView {
         String id;
             while (true) {
                 id = input("아이디 : ");
-                boolean flagId = cr.idCheck(id);
+                boolean flagId = cr.idCheck(id);    // 중복일때 true
                 boolean idLength = cr.idLength(id);
 
-                if (flagId == true && idLength == true) {
+                if (!flagId && idLength) {
                     System.out.println("사용할 수 있는 아이디입니다");
                     System.out.println("아이디 확인");
                     break;
+                }
 
-                } else {
+                else {
                     System.out.println("이미 가입된 아이디 또는 6~12자리 사이 글자 입력해주세요");
-
                 }
 
             }
