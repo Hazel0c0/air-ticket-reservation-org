@@ -15,7 +15,7 @@ public class City {
     this.countryName = countryName;
     this.fee = fee;
     this.continent = continent;
-    this.theme =Theme.NORMAL;
+    this.theme = Theme.NORMAL;
   }
 
   @Override
@@ -65,5 +65,10 @@ public class City {
 
   public void setTheme(Theme theme) {
     this.theme = theme;
+  }
+
+  public Object getChoice(Object o) {
+    if (o instanceof Theme) return getTheme();
+    return getContinent();
   }
 }

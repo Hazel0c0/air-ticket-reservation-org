@@ -13,10 +13,10 @@ import static yougeun.Utility.*;
 
 // 항공편 현황
 public class AirlineSearchView {
-//  static AirlineRepository ar;
+  static AirlineRepository ar;
 
   static {
-//    ar = new AirlineRepository();
+    ar = new AirlineRepository();
   }
 
   public static void searchView() {
@@ -34,21 +34,25 @@ public class AirlineSearchView {
     System.out.println("  3. 전체 도시 보기");
 
     String inputTo = input("\n 번호를 선택해주세요");
+    System.out.println();
 
     String msg = "여행을 떠나고 싶은 나라를 선택해주세요";
     switch (inputTo) {
       case "1": // 인기있는 여행지
         System.out.println("\n*** 이번달 인기 여행지 입니다 ***");
         makeLine();
-        themeTravel(POPULARITY);
-        input(msg);
+        ar.choiceCity();
+        ar.choice(POPULARITY);
+        pickCity(input(msg));
         break;
       case "2":
         Theme pickTheme=themeChangeNum(inputDot("# 테마를 선택해주세요"));
         System.out.println("1. HOT SUMMER!");
         System.out.println("2. 초~!특가 여행지");
         System.out.println("3. 이색 여행지");
-        themeTravel(pickTheme);
+        choice(pickTheme);
+        input(msg);
+
         break;
       case "3":
         System.out.println("1. 국내");
@@ -60,8 +64,8 @@ public class AirlineSearchView {
         System.out.println("7. 대양주");
         Continent pickContinent =pickContinent(inputDot("# 번호를 선택해주세요 "));
         // 번호로만 선택받을지, 글자로도 받을지
-//        continentTravel(selContinent);
-        continentTravel(pickContinent);
+        choice(pickContinent);
+        input(msg);
         break;
       default:
     }
