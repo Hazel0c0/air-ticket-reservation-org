@@ -1,6 +1,7 @@
 package yougeun.board;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class BoardVO {
 
@@ -12,10 +13,20 @@ public class BoardVO {
     private int like;
 
     private String content;
+    private ArrayList<String> comment;
 
     static {
         no = 0;
     }
+
+    public ArrayList<String> getComment() {
+        return comment;
+    }
+
+    public void setComment(ArrayList<String> comment) {
+        this.comment = comment;
+    }
+
     // 제목, 작성자, 컨텐츠
     public BoardVO(String title, String writer, String content) {
 
@@ -25,7 +36,7 @@ public class BoardVO {
         this.like = 0;
         this.content = content;
         num = ++no;
-
+        comment = new ArrayList<>();
     }
 
     public int getNum() {

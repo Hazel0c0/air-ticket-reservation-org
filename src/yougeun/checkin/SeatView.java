@@ -23,25 +23,28 @@ public class SeatView {
         }
         return null;
     }
-    public static void checkin() {
+    public static void checkin(Client client) {
+
+
+
         boolean[][] seatTest = SeatVO.getSeat();
         System.out.println("=== 삼조 에어라인 체크인 시스템 ===");
-        Scanner sc = new Scanner(System.in);
-        String name = Utility.input("체크인 하고자 하는 이름을 입력하세요.");
-        Client client = isUser(name); // 유저 정보가 존재하는지 확인하기
-        if(client==null){
-            System.out.println("유저 정보가 존재하지 않아요");
+        if(client.getTicket().isCheckin()){
+            System.out.println(client.getUserName() + "님은 이미 체크인이 완료되었습니다!");
             return;
         }
 
 
-        System.out.println(name + "님의 체크인 정보");
+
+
+
+        System.out.println(client.getUserName() + "님의 체크인 정보");
 
         for (int k = 0; k <= client.getTicket().getPassenger(); k++) {
             if(k==0) {
-                System.out.println(name + "님 좌석 선택");
+                System.out.println(client.getUserName() + "님 좌석 선택");
             } else{
-                System.out.println(name + "님 " + k + "일행님 좌석 선택");
+                System.out.println(client.getUserName() + "님 " + k + "일행님 좌석 선택");
             }
 
 
@@ -84,5 +87,7 @@ public class SeatView {
                 break;
             }
         }
+        System.out.println(client.getUserName() +"님의 총 " + client.getTicket().getPassenger() + "명의 체크인이 완료되었습니다.");
+        client.getTicket().setCheckin(true);
     }
 }

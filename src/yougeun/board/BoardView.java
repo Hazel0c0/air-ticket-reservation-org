@@ -2,6 +2,7 @@ package yougeun.board;
 
 import yougeun.Utility;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -135,6 +136,14 @@ public class BoardView {
         }
         System.out.println();
         Utility.makeLine();
+        ArrayList<String> comment = board.getComment();
+        if(comment.size()>0) {
+            int i = 1;
+            for (String s : comment) {
+                System.out.println(i++ + "번째 익명님의 댓글 : " + s);
+            }
+        }
+        Utility.makeLine();
     }
 
 
@@ -143,9 +152,16 @@ public class BoardView {
         while (true) {
             BoardVO board = BoardRepository.map.get(idx);
             showNotice(board);
-            String inputNum =  Utility.input("1. 좋아요  0. 돌아가기");
+            String inputNum =  Utility.input("1. 좋아요 2. 댓글 달기 0. 돌아가기");
             if(inputNum.equals("0")) return;
-            board.setLike(board.getLike()+1);
+            if(inputNum.equals("1")) {
+                board.setLike(board.getLike() + 1);
+                continue;
+            }
+            if(inputNum.equals("2")){
+                String comment =  Utility.input("댓글 : ");
+                board.getComment().add(comment);
+            }
         }
     }
 

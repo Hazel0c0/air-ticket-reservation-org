@@ -3,6 +3,8 @@
 package jiwon.airlineStatus;
 
 
+import yougeun.Client.ClientRepository;
+
 public class Test {
 
   public static void main(String[] args) {
@@ -19,7 +21,7 @@ public class Test {
 //    System.out.println(pickCity);
 //    static Stream<City> filter;
 
-    AirlineSearchView.searchView();
+    AirlineSearchView.searchView(ClientRepository.getClientArrayList().get(5));
   }
 
 
