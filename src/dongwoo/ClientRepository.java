@@ -137,17 +137,13 @@ public class ClientRepository {
     }
 
     //인증번호 확인
-    public boolean phoneCheckNum(int phoneCheckNum, int randomNum){
-
-        if(phoneCheckNum==randomNum){
+    public boolean phoneCheckNum(String phoneCheckNum, int randomNum){
+        int phoneCheck=Integer.parseInt(phoneCheckNum);
+        if(phoneCheck==randomNum){
             return true;
         }
         return false;
     }
-
-    //인증번호 숫자로만 받는지 확인
-
-
 
     //가입 아이디 중복 확인
     public boolean idCheck(String id) {

@@ -116,10 +116,14 @@ public class ClientView {
         while (true) {
             int radomNum = cr.randomNum();
 
-            int phoneCheckNum = Integer.parseInt(input("인증번호입력 : "));
-            boolean flagPhonCheckNum = cr.phoneCheckNum(phoneCheckNum, radomNum);
-            if (flagPhonCheckNum == true)
-                break;
+            String phoneCheckNum = (input("인증번호입력 : "));
+            boolean flagInt = cr.integerCheck(phoneCheckNum);
+
+            if (flagInt == true) {
+                boolean flagPhonCheckNum = cr.phoneCheckNum(phoneCheckNum, radomNum);
+                if (flagPhonCheckNum == true)
+                    break;
+            }
         }
 
 
