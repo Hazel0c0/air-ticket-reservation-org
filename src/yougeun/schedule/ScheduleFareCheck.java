@@ -24,7 +24,7 @@ public class ScheduleFareCheck {
         while (true) {
             int i=0;
             for (City city1 : city) {
-                System.out.print(city1.getCountryName() + " ");
+                System.out.print(city1.getCountryName() + ", ");
                 i++;
                 if(i%5==0) System.out.println();
             }
