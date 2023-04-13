@@ -2,11 +2,14 @@ package jiwon.airlineStatus;
 
 import jiwon.enumset.Continent;
 import jiwon.enumset.Theme;
+import jiwon.enumset.Way;
 
 import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 import static jiwon.airlineStatus.AirlineInfo.city;
+import static jiwon.airlineStatus.AirlineSearchView.n;
+import static jiwon.airlineStatus.AirlineSearchView.pickWay;
 import static jiwon.enumset.Continent.*;
 import static jiwon.enumset.Theme.*;
 import static yougeun.Utility.*;
@@ -56,13 +59,19 @@ public class AirlineRepository {
     city.stream()
         .filter(t -> t.getChoice(o) == o)
         .collect(toList())
-        .forEach(City::cityView);
+        .forEach(t -> showTicketInfo(t));
   }
   private void pickCity(String input) {
     City findCity = city.stream()
         .filter(c -> c.getCountryName().equals(input))
         .findFirst().get();
-    findCity.cityView();
+    showTicketInfo(findCity);
+  }
+  public void showTicketInfo(City t){
+    System.out.println("    " + "from" + " <-> " + t.getCountryName());
+    System.out.println("    "+(pickWay==Way.ONE_WAY?"편도":"왕복"));
+    System.out.println("    KRW " + t.getFee() * n * (pickWay==Way.ONE_WAY?1:2));
+    makeLine();
   }
 
    public Theme themeChangeNum(String inputTheme) {
