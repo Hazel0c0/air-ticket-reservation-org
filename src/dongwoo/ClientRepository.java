@@ -108,7 +108,7 @@ public class ClientRepository {
     public int randomNum(){
         Random random=new Random();
         int randomNum=random.nextInt(1000000)+0;
-        System.out.printf(String.format("인증번호 : %6d\n", randomNum),5);
+        System.out.printf("인증번호 : %06d\n", randomNum);
         return randomNum;
 
     }
