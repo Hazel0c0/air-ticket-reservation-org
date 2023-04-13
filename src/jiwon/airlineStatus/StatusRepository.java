@@ -55,5 +55,7 @@ public class StatusRepository {
         ));
   }
 
-
+  public static List<City> getCity() {
+    return city;
+  }
 }
