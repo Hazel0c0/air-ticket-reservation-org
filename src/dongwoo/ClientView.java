@@ -61,37 +61,53 @@ public class ClientView {
         //이름입력
         String name;
         while (true) {
-            name = input("이름 : ");
-            boolean flagName = cr.nameCheck(name);
-            if (flagName == true) {
-                break;
-            } else {
-                System.out.println("이름을 다시 입력해주세요 (2~5글자)");
+            while (true) {
+                name = input("이름 : ");
+                boolean flagName = cr.nameCheck(name);
+                if (flagName == true) {
+                    break;
+                } else {
+                    System.out.println("이름을 다시 입력해주세요 (2~5글자)");
+                }
             }
-        }
+
+            //한글입력확인
+
+                boolean koreanCheck = cr.koreanCheck(name);
+                if (koreanCheck == true) {
+                    break;
+                } else {
+                    System.out.println("한글을 입력해주세요");
+                }
+            }
+
 
 
         //성별확인
         Gender gender;
         while (true) {
-            int genderNum = Integer.parseInt(input("성별 : 1.남자 2.여자 "));
+            String genderNum =(input("성별 : 1.남자 2.여자 "));
             gender = cr.genderCheck(genderNum);
-            if (gender.equals(Gender.MALE) || gender.equals(Gender.FEMALE)) {
-                break;
-            } else {
-                System.out.println("성별을 다시 입력해주세요");
+                if (gender.equals(Gender.MALE) || gender.equals(Gender.FEMALE)) {
+                    break;
+                } else {
+                    System.out.println("성별을 다시 입력해주세요");
+                }
             }
-        }
+
 
         //핸드폰번호입력
         String userPhone;
         while (true) {
             userPhone = input("휴대폰번호(-제외 숫자만 입력하세요) : ");
             boolean phoneCheck = cr.phoneCheck(userPhone);
-            if (phoneCheck == true) {
-                break;
-            } else {
-                System.out.println("재입력하세요 10~11자리");
+            boolean checkNum=cr.integerCheck(userPhone);
+            if(checkNum==true) {
+                 if (phoneCheck == true) {
+                    break;
+                } else {
+                    System.out.println("재입력하세요 10~11자리");
+                }
             }
         }
 

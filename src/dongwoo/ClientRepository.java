@@ -24,21 +24,44 @@ public class ClientRepository {
     public boolean nameCheck(String name){
         if (name.length()>=2&&name.length()<=5){
             return true;
+
         }
         return false;
     }
 
+    //한글입력확인
+    public boolean koreanCheck(String name){
+        if(name.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")) {
+                return true;
+        } else {
+                return false;
+        }
+    }
+
+
     //성별확인
-    public Gender genderCheck(int genderNum) {
+    public Gender genderCheck(String genderNum) {
         switch (genderNum) {
-            case 1:
+            case "1":
                 return Gender.MALE;
-            case 2:
+            case "2":
                 return Gender.FEMALE;
         }
         return Gender.NULL;
 
     }
+    //입력값 숫자확인
+    public boolean integerCheck(String checkNum) {
+        try {
+            Double.parseDouble(checkNum);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+
+
 
     //개인메일계정입력
     public String emailWrite(String email1){
@@ -121,6 +144,9 @@ public class ClientRepository {
         }
         return false;
     }
+
+    //인증번호 숫자로만 받는지 확인
+
 
 
     //가입 아이디 중복 확인
