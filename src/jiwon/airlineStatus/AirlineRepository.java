@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
-import static jiwon.airlineStatus.StatusRepository.city;
+import static jiwon.airlineStatus.AirlineInfo.city;
 import static jiwon.enumset.Continent.*;
 import static jiwon.enumset.Theme.*;
 import static yougeun.Utility.*;
@@ -16,6 +16,9 @@ public class AirlineRepository {
   static List<String> airportList;
   static String from;
 
+  static City c = new City();
+
+  // 출발지
   static {
     airportList = new ArrayList<>(
         Arrays.asList("서울 / 인천", "서울 / 김포", "제주", "광주", "여수", "청주", "대구", "부산 / 김해")
@@ -39,42 +42,19 @@ public class AirlineRepository {
     return from;
   }
 
-  static void destination(String inputTo, String from) {
-
-
-    Map<String, Object> theme = new HashMap<>();
-    theme.put("1", "HOT SUMMER!");
-    theme.put("", "초~!특가 여행지");
-    theme.put("", "이색 여행지");
-//    휴양지, 효도관광
-
-  }
-
-  static Stream<City> filter;
-  static void themeTravel(Theme theme) {
-    // 테마별
-    filter = city.stream()
-        .filter(t -> t.getTheme() == theme);
-    filter();
-  }
-  static void continentTravel(Continent ct) {
-    // 국가별
-    filter = city.stream()
-        .filter(c -> c.getContinent() == ct);
-    filter();
-  }
-  static void filter() {
-    filter
+  static void choice(Object o) {
+// 테마, 나라별 여행지 선택
+    city.stream()
+        .filter(t -> t.getChoice(o) == o)
         .collect(toList())
-        .forEach(popul -> {
-          System.out.println("    " + from + " <-> " + popul.getCountryName());
-          System.out.println("    왕복");
-          System.out.println("    KRW " + popul.getFee() * 2);
-          makeLine();
-        });
+        .forEach(t -> {
+      System.out.println("    " + from + " <-> " + t.getCountryName());
+      System.out.println("    왕복");
+      System.out.println("    KRW " + t.getFee() * 2);
+      makeLine();
+    });
   }
 
-// 테마별 여행지
   static public Theme themeChangeNum(String inputTheme) {
     switch (inputTheme) {
       case "1":
@@ -88,18 +68,28 @@ public class AirlineRepository {
   }
 
   //나라별 여행지 ( 모든도시 보여주기)
-  public static Continent pickContinent(String s){
+  public static Continent pickContinent(String s) {
     Map<String, Continent> cMap = new HashMap<>();
     cMap.put("1", DOMESTIC);
     cMap.put("2", CHINA);
     cMap.put("3", JAPAN);
     cMap.put("4", SOUTHEAST_ASIA);
-    cMap.put("5",AMERICA);
-    cMap.put("6",EUROPE);
-    cMap.put("7",OCEANIA);
+    cMap.put("5", AMERICA);
+    cMap.put("6", EUROPE);
+    cMap.put("7", OCEANIA);
 
     return cMap.get(s);
+  }
 
+  static public void pickCity(String input) {
+    List<City> pickCity = city.stream()
+        .filter(c -> c.getCountryName().equals(input))
+        .collect(toList());
 
+    System.out.println(pickCity);
+  }
+
+  public void choiceCity() {
   }
 }
+
