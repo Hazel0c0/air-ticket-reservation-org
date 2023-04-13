@@ -3,6 +3,7 @@ package jiwon.airlineStatus;
 import jiwon.enumset.Continent;
 import jiwon.enumset.Grade;
 import jiwon.enumset.Theme;
+import jiwon.enumset.Way;
 import yougeun.Client.Client;
 import yougeun.Client.Ticket;
 import yougeun.Utility;
@@ -32,6 +33,7 @@ public class AirlineSearchView {
     airportList(); // 출발지 목록
     String airport = startingPoint(input("\n# 출발지를 선택해주세요"));
     System.out.println("[ 선택하신 공항은 " + airport + "입니다 ]\n");
+    ticket.setFrom(airport);
 
     /* 출발지 입력되면 가지 못하는 도착지 지워지게 */
     System.out.println("# 여행 할 도시 선택을 도와드릴게요");
@@ -159,6 +161,9 @@ public class AirlineSearchView {
 //        System.out.println("!! 오늘날을 다시 입력해주세요.");
 //      }
     }
+    ticket.setGo(go);
+    ticket.setComeback(comeBack);
+
     makeLine();
     System.out.println(
         "\n전 구간에 소아와 함께 여행하는 동반 성인이 있을 경우,\n" +
@@ -166,18 +171,37 @@ public class AirlineSearchView {
             "유아는 탑승일 기준 만 2세 미만까지이며,\n" +
             "좌석을 점유하지 않습니다.\n");
     makeLine();
-    System.out.println("# 탑승 인원을 입력해주세요");
-    String adult = inputDot("성인");
-    String child = inputDot("소아");
-    String baby = inputDot("유아"); // 요금 없음
-
-    String way = input("\n  [ 1. 왕복   2. 편도 ]");
-    //  ROUND_TRIP, ONE_WAY
-
-    String inputGrade = input("\n# 좌석 등급을 선택해주세요\n" +
-        "1. ECONOMY  2. PRESTIGE  3. FIRST");
-    Grade grade = seatGrade(inputGrade);
-
+    while(true) {
+      try {
+        System.out.println("# 탑승 인원을 입력해주세요");
+        int adult = Integer.parseInt(inputDot("성인"));
+        int child = Integer.parseInt(inputDot("소아"));
+        int baby = Integer.parseInt(inputDot("유아")); // 요금 없음
+        ticket.setPassenger(adult+child);
+        break;
+      } catch (Exception e){
+        Utility.inputError();
+        continue;
+      }
+    }
+    while (true) {
+      String way = input("\n  [ 1. 왕복   2. 편도 ]");
+      if(way.equals("1")){
+        ticket.setWay(Way.ROUND_TRIP);
+        break;
+      } else if(way.equals("2")){
+        ticket.setWay(Way.ONE_WAY);
+        break;
+      }
+      //  ROUND_TRIP, ONE_WAY
+    }
+    Grade grade = null;
+    while (grade == null) {
+      String inputGrade = input("\n# 좌석 등급을 선택해주세요\n" +
+              "1. ECONOMY  2. PRESTIGE  3. FIRST");
+      grade = seatGrade(inputGrade);
+    }
+    ticket.setGrade(grade);
   }
 
   private static Grade seatGrade(String n) {
@@ -193,7 +217,4 @@ public class AirlineSearchView {
         return null;
     }
   }
-
-
-
 }
