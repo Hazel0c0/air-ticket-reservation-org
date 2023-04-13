@@ -40,7 +40,7 @@ public class SeatView {
 
         System.out.println(client.getUserName() + "님의 체크인 정보");
 
-        for (int k = 0; k <= client.getTicket().getPassenger(); k++) {
+        for (int k = 0; k < client.getTicket().getPassenger(); k++) {
             if(k==0) {
                 System.out.println(client.getUserName() + "님 좌석 선택");
             } else{
