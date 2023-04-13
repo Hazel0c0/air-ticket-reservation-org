@@ -22,9 +22,7 @@ public class Client {
     private int age;
 
 
-
-    public Client(String userName, Gender gender, String userPhone, String email,
-                  String location, String id, String password, int age) {
+    public Client(String userName, Gender gender, String userPhone, String email, String location, String id, String password, int age) {
         this.userName = userName;
         this.gender = gender;
         this.userPhone = userPhone;
@@ -32,7 +30,7 @@ public class Client {
         this.location = location;
         this.id = id;
         this.password = password;
-        this.age =age;
+        this.age = age;
     }
 
     public String getUserName() {
