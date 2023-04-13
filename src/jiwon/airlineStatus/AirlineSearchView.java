@@ -3,6 +3,12 @@ package jiwon.airlineStatus;
 import jiwon.enumset.Continent;
 import jiwon.enumset.Grade;
 import jiwon.enumset.Theme;
+import yougeun.Utility;
+
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 import static jiwon.airlineStatus.AirlineRepository.*;
 import static jiwon.airlineStatus.AirlineRepository.pickContinent;
@@ -65,25 +71,94 @@ public class AirlineSearchView {
         break;
       default:
     }
-
-    int go = 230411;
+    LocalDate today = LocalDate.now();
+    LocalDate go = null;
+    String goInput = "230411";
 //    날짜 어떤식으로 입력하는게 좋을지..
     while (true) {
-      go = Integer.parseInt(input("\n# 가는날 \n여섯자리를 정확히 입력해주세요(ex.230411)"));
-      if (go >= 230411) {
-        break;
+      System.out.println("오늘 날짜 " + today);
+      goInput = input("\n# 가는날 \n여섯자리를 정확히 입력해주세요(ex.230411)");
+      if(goInput.length() != 6){
+        System.out.println("6자리 입력해주세요");
+        continue;
       }
+      try {
+        int yymmdd = Integer.parseInt(goInput);
+        int year = yymmdd / 10000 + 2000;
+        yymmdd%=10000;
+        int month = yymmdd/100;
+        yymmdd%=100;
+        int day = yymmdd;
+        
+        go = LocalDate.of(year, month, day);
+        long between = ChronoUnit.DAYS.between(today, go);
+        if(between<0) {
+          System.out.println("현재 날짜 전으로는 예매가 불가능합니다.");
+          continue;
+        }
+        System.out.println("go = " + go);
+        break;
+        
+        
+      } catch (NumberFormatException e) {
+        Utility.inputError();
+        continue;
+      } catch (DateTimeException e){
+        System.out.println("날짜 입력 오류!! 다시 입력해주세요");
+        continue;
+      }
+
+
+      //      if (go >= 230411) {
+//        break;
+//      }
       // 오늘날짜 이후로 선택 가능하게 if
       // ex 에 오늘날짜 나오게 설정
     }
+
+    LocalDate comeBack = null;
+    System.out.println();
     while (true) {
-      int comeBack
-          = Integer.parseInt(input("\n# 오는날 \n여섯자리를 정확히 입력해주세요(ex.230412)"));
-      if (comeBack > go) {
-        break;
-      } else {
-        System.out.println("!! 오늘날을 다시 입력해주세요.");
+      String comeBackInput
+          = input("\n# 오는날 \n여섯자리를 정확히 입력해주세요(ex.230412)");
+      if(comeBackInput.length() != 6){
+        System.out.println("6자리 입력해주세요");
+        continue;
       }
+
+      try {
+        int yymmdd = Integer.parseInt(comeBackInput);
+        int year = yymmdd / 10000 + 2000;
+        yymmdd%=10000;
+        int month = yymmdd/100;
+        yymmdd%=100;
+        int day = yymmdd;
+
+        comeBack = LocalDate.of(year, month, day);
+        long between = ChronoUnit.DAYS.between(go, comeBack);
+        if(between<0) {
+          System.out.println("가는 날짜 이전으로의 예매는 불가능합니다.");
+          System.out.println("가는 날짜 : " + go);
+          continue;
+        }
+        System.out.println("comeBack = " + comeBack);
+        break;
+
+
+      } catch (NumberFormatException e) {
+        Utility.inputError();
+        continue;
+      } catch (DateTimeException e){
+        System.out.println("날짜 입력 오류!! 다시 입력해주세요");
+        continue;
+      }
+
+
+//      if (comeBack > go) {
+//        break;
+//      } else {
+//        System.out.println("!! 오늘날을 다시 입력해주세요.");
+//      }
     }
 
     makeLine();
