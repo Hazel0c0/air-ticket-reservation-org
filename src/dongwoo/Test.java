@@ -9,5 +9,6 @@ public class Test    {
 //        Client c = new Client("송유근","golddron7","1234", Gender.MALE,29,2500,700000);
         ClientView clientView =new ClientView();
         clientView.viewProcess();
+
     }
 }
