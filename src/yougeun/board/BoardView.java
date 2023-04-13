@@ -1,5 +1,7 @@
 package yougeun.board;
 
+import yougeun.Utility;
+
 import java.util.Map;
 import java.util.Scanner;
 
@@ -34,7 +36,7 @@ public class BoardView {
     }
 
     public static void menu(){
-
+        System.out.println("=== 삼조 에어라인 공지사항 페이지입니다. ===");
         System.out.println("No                제목             글쓴이    작성시간   좋아요");
         System.out.println("============================================================");
 //        System.out.println("page = " + page);
@@ -81,11 +83,11 @@ public class BoardView {
      * @param userInput 사용자 입력에 따른 분기점
      */
     private static void boardLosic(String userInput) {
-
         try {
-            int key = Integer.parseInt(userInput);
+            int no = Integer.parseInt(userInput);
 //            System.out.println("페이지입니당!!!");    // 게시글 들어가는 로직
 //            viewBoard(key);
+             detailNotice(no);
         } catch (Exception e) {
             switch (userInput.toLowerCase()){
                 case "<":
@@ -115,4 +117,37 @@ public class BoardView {
         currentPage+=1;
         page -= 10;// 32페이지
     }
+
+    public static void showNotice(BoardVO board){
+        if(board == null) {
+            System.out.println("게시판 정보가 없습니다");
+            Utility.stop();
+            return;
+        }
+        System.out.printf("제목 : %s\n", board.getTitle());
+        System.out.printf("번호 : %-10d 글쓴이 : %-10s 좋아요 : %-10d\n", board.getNum(), board.getWriter(), board.getLike());
+        System.out.printf("[%-20s내용%20s]\n", "","");
+        String content = board.getContent();
+        for (int i = 0; i < content.length(); i++) {
+            System.out.print(content.charAt(i));
+            if((i+1)%30==0)
+                System.out.println();
+        }
+        System.out.println();
+        Utility.makeLine();
+    }
+
+
+    // 게시판 번호를 입력하면 디테일한 게시판이 보여지는 기능
+    private static void detailNotice(int idx){
+        while (true) {
+            BoardVO board = BoardRepository.map.get(idx);
+            showNotice(board);
+            String inputNum =  Utility.input("1. 좋아요  0. 돌아가기");
+            if(inputNum.equals("0")) return;
+            board.setLike(board.getLike()+1);
+        }
+    }
+
+
 }
