@@ -125,16 +125,14 @@ public class ClientRepository {
 
     //가입 아이디 중복 확인
     public boolean idCheck(String id) {
+        boolean flagId = false;
         for (int i = 0; i < clientList.size(); i++) {
-            boolean flagId = clientList.get(i).equals(id);    //get.getid수정필요
-            if (!flagId == false) {
-                System.out.println("중복아이디, 재입력하세요");
-                return !flagId;
-            } else {
-                return flagId;
+            if (clientList.get(i).getId().equals(id)) {
+                flagId= true;
+                break;
             }
         }
-        return true;
+        return flagId;
     }
 
     //가입 아이디 글자수  제한
@@ -142,7 +140,6 @@ public class ClientRepository {
         if(id.length()>=6&&id.length()<=12) {
             return true;
         }else {
-
             return false;
 
         }
