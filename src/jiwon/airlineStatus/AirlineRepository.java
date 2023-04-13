@@ -43,20 +43,14 @@ public class AirlineRepository {
 
 
     Map<String, Object> theme = new HashMap<>();
-    theme.put("HOT SUMMER! -- ", "11");
-    theme.put("초~!특가 여행지", discount);
-    theme.put("이색 여행지", "배열..");
-//    theme.put("휴양지", "22");
-//    theme.put("효도 관광", "배열..");
-
-  }
-
-  void filterTravel() {
+    theme.put("1", "HOT SUMMER!");
+    theme.put("", "초~!특가 여행지");
+    theme.put("", "이색 여행지");
+//    휴양지, 효도관광
 
   }
 
   static Stream<City> filter;
-
   static void themeTravel(Theme theme) {
     // 테마별
     filter = city.stream()
@@ -80,43 +74,32 @@ public class AirlineRepository {
         });
   }
 
-
-  static List<String> discount = new ArrayList<>(
-      Arrays.asList(
-          "서울 / 인천 <-> 로스앤젤레스\n왕복\nKRW 1,502,700~",
-          "서울 / 인천 <-> 프랑크푸르트\n왕복\nKRW 1,353,200~",
-          "서울 / 인천 <-> 호놀룰루\n왕복\nKRW 1,054,500~"
-      )
-  );
-
-  private static void themeTravel(String theme) {
-
-    Map<String, Object> themeTravel = new HashMap<>();
-    //여름 휴가지
-    themeTravel.put("1", "## HOT SUMMER! -- ");
-    // 특가 여행지
-//    themeTravel.put("2", discount);
-    // 이색 여행지
-    themeTravel.put("3", "## 이색 여행지");
-    //    theme.put("휴양지", "22");
-    //    theme.put("효도 관광", "배열..");
-
-    if (themeTravel.containsKey(theme)) {
-      System.out.println(themeTravel.get(theme));
+// 테마별 여행지
+  static public Theme themeChangeNum(String inputTheme) {
+    switch (inputTheme) {
+      case "1":
+        return SEASON;
+      case "2":
+        return DISCOUNT;
+      case "3":
+        return UNUSUAL;
     }
+    return NORMAL;
   }
-//  static List<String> discount = new ArrayList<>(
-//      Arrays.asList(
-//          "## 초~!특가 여행지",
-//          "----------------------------------------------\n",
-//          "서울 / 인천 <-> 로스앤젤레스\n왕복\nKRW 1,502,700~",
-//          "\n----------------------------------------------\n",
-//          "서울 / 인천 <-> 프랑크푸르트\n왕복\nKRW 1,353,200~",
-//          "\n----------------------------------------------\n",
-//          "서울 / 인천 <-> 호놀룰루\n왕복\nKRW 1,054,500~",
-//          "\n----------------------------------------------"
-//      )
-//  );
+
+  //나라별 여행지 ( 모든도시 보여주기)
+  public static Continent pickContinent(String s){
+    Map<String, Continent> cMap = new HashMap<>();
+    cMap.put("1", DOMESTIC);
+    cMap.put("2", CHINA);
+    cMap.put("3", JAPAN);
+    cMap.put("4", SOUTHEAST_ASIA);
+    cMap.put("5",AMERICA);
+    cMap.put("6",EUROPE);
+    cMap.put("7",OCEANIA);
+
+    return cMap.get(s);
 
 
+  }
 }
