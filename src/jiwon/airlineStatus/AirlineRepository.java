@@ -42,20 +42,26 @@ public class AirlineRepository {
     return from;
   }
 
-  static void choice(Object o) {
-// 테마, 나라별 여행지 선택
+
+//도착지 선택
+  public void choiceCity(Object o) {
+    choice(o);
+    pickCity(input("여행을 떠나고 싶은 나라를 선택해주세요"));
+  }
+
+  // 테마, 나라별 여행지 선택
+  private void choice(Object o) {
     city.stream()
         .filter(t -> t.getChoice(o) == o)
         .collect(toList())
         .forEach(t -> {
-      System.out.println("    " + from + " <-> " + t.getCountryName());
-      System.out.println("    왕복");
-      System.out.println("    KRW " + t.getFee() * 2);
-      makeLine();
-    });
+          System.out.println("    " + from + " <-> " + t.getCountryName());
+          System.out.println("    왕복");
+          System.out.println("    KRW " + t.getFee() * 2);
+          makeLine();
+        });
   }
-
-  static public Theme themeChangeNum(String inputTheme) {
+   public Theme themeChangeNum(String inputTheme) {
     switch (inputTheme) {
       case "1":
         return SEASON;
@@ -66,9 +72,8 @@ public class AirlineRepository {
     }
     return NORMAL;
   }
-
   //나라별 여행지 ( 모든도시 보여주기)
-  public static Continent pickContinent(String s) {
+  public  Continent pickContinent(String s) {
     Map<String, Continent> cMap = new HashMap<>();
     cMap.put("1", DOMESTIC);
     cMap.put("2", CHINA);
@@ -80,16 +85,12 @@ public class AirlineRepository {
 
     return cMap.get(s);
   }
-
-  static public void pickCity(String input) {
+   private void pickCity(String input) {
     List<City> pickCity = city.stream()
         .filter(c -> c.getCountryName().equals(input))
         .collect(toList());
-
     System.out.println(pickCity);
   }
 
-  public void choiceCity() {
-  }
 }
 
