@@ -39,12 +39,12 @@ public class AirlineRepository {
   static String startingPoint(String inputFrom) {
     // 숫자 선택
     int n = Integer.parseInt(inputFrom);
-    from = airportList.get(n-1);
+    from = airportList.get(n - 1);
     return from;
   }
 
 
-//도착지 선택
+  //도착지 선택
   public void choiceCity(Object o) {
     makeLine();
     ThemeAndContinent(o);
@@ -52,15 +52,6 @@ public class AirlineRepository {
     makeLine();
     tk.setDestination(pick);
     pickCity(pick);
-
-  }
-  private void themeTest(Theme o) {
-
-    for (City city1 : city) {
-      if(city1.getTheme() == o){
-        showTicketInfo(city1);
-      }
-    }
 
   }
 
@@ -72,37 +63,42 @@ public class AirlineRepository {
         .collect(toList())
         .forEach(a -> showTicketInfo(a));
   }
+
   private void pickCity(String input) {
     City findCity = city.stream()
         .filter(c -> c.getCountryName().equals(input))
         .findFirst().get();
     showTicketInfo(findCity);
   }
-  public void showTicketInfo(City t){
+
+  public void showTicketInfo(City t) {
     System.out.println("    " + from + " <-> " + t.getCountryName());
 //    System.out.println("    "+(pickWay==Way.ONE_WAY?"편도":"왕복"));
-    System.out.println("    "+ tk.getWayK());
-    int fee = (int)calFee(t);
-    if(t.getTheme() == DISCOUNT){
-      fee*=0.7;
+    System.out.println("    " + tk.getWayK());
+    int fee = (int) calFee(t);
+    if (t.getTheme() == DISCOUNT) {
+      fee *= 0.7;
     }
 
     tk.setPay(fee);
     System.out.println("    KRW " + fee);
     makeLine();
   }
-  double calFee(City t){
+
+  double calFee(City t) {
 
     return t.getFee() * n // 인원수
-        * (tk.getWay()==Way.ONE_WAY?1:2) // 편도 왕복 계산
-        * multGrade() ;
+        * (tk.getWay() == Way.ONE_WAY ? 1 : 2) // 편도 왕복 계산
+        * multGrade();
   }
+
   private double multGrade() {
-    if (tk.getGrade()==Grade.PRESTIGE) return 1.5;
-    else if (tk.getGrade()==Grade.FIRST) return 2;
+    if (tk.getGrade() == Grade.PRESTIGE) return 1.5;
+    else if (tk.getGrade() == Grade.FIRST) return 2;
     return 1;
   }
-   public Theme themeChangeNum(String inputTheme) {
+
+  public Theme themeChangeNum(String inputTheme) {
     switch (inputTheme) {
       case "1":
         return SEASON;
@@ -113,8 +109,9 @@ public class AirlineRepository {
     }
     return NORMAL;
   }
+
   //나라별 여행지 ( 모든도시 보여주기)
-  public  Continent pickContinent(String s) {
+  public Continent pickContinent(String s) {
     Map<String, Continent> cMap = new HashMap<>();
     cMap.put("0", DOMESTIC);
     cMap.put("1", CHINA);
@@ -141,7 +138,8 @@ public class AirlineRepository {
         System.out.println("숫자를 정확히 입력해주세요");
     }
   }
-   public void seatGrade(String n) {
+
+  public void seatGrade(String n) {
     switch (n) {
       case "1":
         tk.setGrade(Grade.ECONOMY);
@@ -155,16 +153,6 @@ public class AirlineRepository {
       default:
         System.out.println("숫자를 정확히 입력해주세요");
     }
-  }
-
-  public void choiceTheme(Theme pickTheme) {
-    makeLine();
-    themeTest(pickTheme);
-    String pick = input("여행을 떠나고 싶은 나라를 선택해주세요");
-    makeLine();
-    tk.setDestination(pick);
-    pickCity(pick);
-
   }
 }
 

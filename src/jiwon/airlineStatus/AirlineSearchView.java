@@ -68,9 +68,9 @@ public class AirlineSearchView {
 
         /* 출발지 입력되면 가지 못하는 도착지 지워지게 */
         System.out.println("# 여행 할 도시 선택을 도와드릴게요");
-        System.out.println("  1. 지금! 인기 여행지");
+        System.out.println("  1. 어디로든지 문!!=3");
         System.out.println("  2. 테마별 여행지");
-        System.out.println("  3. 전체 도시 보기");
+        System.out.println("  3. 전체 여행지");
 
         String inputTo = input("\n 번호를 선택해주세요");
         System.out.println();
@@ -82,8 +82,8 @@ public class AirlineSearchView {
             break;
           case "2":
             System.out.println("1. HOT SUMMER!");
-            System.out.println("2. 초~!특가 여행지");
-            System.out.println("3. 이색 여행지");
+            System.out.println("2. 바로 내일~! 여행");
+            System.out.println("3. Class가 다른 이색 여행지");
             Theme pickTheme = ar.themeChangeNum(inputDot("# 테마를 선택해주세요"));
             ar.choiceCity(pickTheme);
             break;
