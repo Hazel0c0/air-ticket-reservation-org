@@ -28,6 +28,7 @@ public class SeatView {
 
 
         boolean[][] seatTest = SeatVO.getSeat();
+        Utility.topBar();
         System.out.println("=== 삼조 에어라인 체크인 시스템 ===");
         if(client.getTicket().isCheckin()){
             System.out.println(client.getUserName() + "님은 이미 체크인이 완료되었습니다!");

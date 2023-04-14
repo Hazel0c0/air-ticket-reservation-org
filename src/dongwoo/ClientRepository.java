@@ -19,7 +19,7 @@ public class ClientRepository {
 
     Scanner sc = new Scanner(System.in);
 
-    List<Client> clientList = new ArrayList<>();
+    List<Client> clientList = yougeun.Client.ClientRepository.getClientArrayList();
 
 
 

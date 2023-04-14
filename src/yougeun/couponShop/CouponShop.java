@@ -13,6 +13,7 @@ public class CouponShop {
 
     // 마일리지 쇼핑몰에 대한 정보를 출력
     public static void menu(){
+        Utility.topBar();
         System.out.println("=== 에어라인 마일리지 쿠폰 쇼핑몰입니다. ===");
         System.out.println("1. 나의 쿠폰 정보 보기");
         System.out.println("2. 쿠폰 구매하기");

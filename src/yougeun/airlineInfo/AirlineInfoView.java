@@ -1,5 +1,7 @@
 package yougeun.airlineInfo;
 
+import yougeun.Utility;
+
 import java.util.List;
 import static yougeun.Utility.*;
 
@@ -11,6 +13,7 @@ public class AirlineInfoView {
 
 
         while (true) {
+            Utility.topBar();
             System.out.println("1. 공항정보");
             System.out.println("2. 체크인 정보");
             System.out.println("3. 라운지 정보");

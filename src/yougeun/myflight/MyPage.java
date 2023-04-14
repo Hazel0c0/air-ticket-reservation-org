@@ -14,6 +14,7 @@ public class MyPage {
 
 
     public static void menu(){
+        Utility.topBar();
         System.out.println("=== 삼조 에어라인 마이 페이지 ===");
         System.out.println("1. 현재 잔액 조회하기");
         System.out.println("2. 현재 마일리지 조회하기");

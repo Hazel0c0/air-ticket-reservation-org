@@ -1,9 +1,10 @@
+import dongwoo.ClientView;
 import yougeun.SamjoAirLine;
 
 public class Main {
     public static void main(String[] args) {
-
-        System.out.println("");
+        ClientView clientView =new ClientView();
+        clientView.viewProcess();
         SamjoAirLine.run();
     }
 }

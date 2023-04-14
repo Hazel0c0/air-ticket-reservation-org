@@ -25,6 +25,7 @@ public class ReservationCheck {
      *  이름을 입력하면 예약 정보가 나오는 함수
      */
     public static void check(){
+        Utility.topBar();
         System.out.println("=== 삼조 에어라인 예약 정보 시스템 ===");
         String name = Utility.input("승객 정보 이름을 입력해주세요 ");
         Client client = findName(name);

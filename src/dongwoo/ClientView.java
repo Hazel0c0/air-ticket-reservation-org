@@ -29,7 +29,7 @@ public class ClientView {
         System.out.println("=============================");
     }
 
-    void viewProcess() {
+    public void viewProcess() {
 
         while (true) {
             mainView();
