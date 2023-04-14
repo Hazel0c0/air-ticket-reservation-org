@@ -35,7 +35,7 @@ public class ClientRepository {
 
     //한글입력확인
     public boolean koreanCheck(String name){
-        if(name.matches(".*[가-힣]+.*")) {
+        if(name.matches("^[가-힣]*$")) {
             return true;
         } else {
             return false;
@@ -184,6 +184,14 @@ public class ClientRepository {
 
     }
 
+    public int randomInNum(){
+        Random random=new Random();
+        int randomNum=random.nextInt(1000000)+0;
+        System.out.printf("인증번호 : %06d\n", randomNum);
+        return randomNum;
+
+    }
+
     //인증번호 확인
     public boolean phoneCheckNum(String phoneCheckNum, int randomNum){
         int phoneCheck=Integer.parseInt(phoneCheckNum);
@@ -254,6 +262,11 @@ public class ClientRepository {
             }
         }
         return null;
+    }
+
+    //아이디 비밀번호 찾기
+    public void search(){
+
     }
 
 }

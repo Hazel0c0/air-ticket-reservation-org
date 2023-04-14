@@ -20,6 +20,8 @@ public class ClientView {
         System.out.println("\n### 삼조 에어라인에 오신걸 환영합니다~~ ###");
         System.out.println("* 1. 회원 정보 등록하기");
         System.out.println("* 2. 로그인");
+        System.out.println("* 3. 아이디찾기");
+        System.out.println("* 4. 비밀번호찾기");
         System.out.println("* 0. 프로그램 종료하기");
         System.out.println("=============================");
     }
@@ -40,6 +42,9 @@ public class ClientView {
                         return client;
                     }
                     break;
+
+                case "3":
+                    searchId();
                 case "0":
                     String answer = input("# 정말로 종료합니까? [y/n] : ");
                     if (answer.toLowerCase().charAt(0) == 'y') {
@@ -87,20 +92,20 @@ public class ClientView {
         while (true) {
             String genderNum =(input("성별 : 1.남자 2.여자 "));
             gender = cr.genderCheck(genderNum);
-                if (gender.equals(Gender.MALE) || gender.equals(Gender.FEMALE)) {
-                    break;
-                } else {
-                    System.out.println("성별을 다시 입력해주세요");
-                }
+            if (gender.equals(Gender.MALE) || gender.equals(Gender.FEMALE)) {
+                break;
+            } else {
+                System.out.println("성별을 다시 입력해주세요");
             }
+        }
 
 
         //핸드폰번호입력
         String realNum;
         while (true) {
             String userPhone = input("휴대폰 앞 3자리를 선택하세요 \n " +
-                                            "1.010  2.011  3.019  4.017  5.016");
-            String userPhone1 = input("휴대폰번호(-제외 숫자만 입력하세요) : ");
+                    "1.010  2.011  3.019  4.017  5.016");
+            String userPhone1 = input("휴대폰번호(앞 3자리, '-' 제외 숫자만 입력하세요 : ");
             String sd=cr.phone_firstNum(userPhone);
 
             realNum = sd+userPhone1;
@@ -113,7 +118,7 @@ public class ClientView {
                     realNum=phone_format;
                     break;
                 } else {
-                    System.out.println("재입력하세요 10~11자리 / 앞자리 010 or 011 시작");
+                    System.out.println("번호길이 or 앞 3자리 보기선택 오류 or 숫자를 입력하세요 \n");
                 }
             }
         }
@@ -306,4 +311,24 @@ public class ClientView {
 
     }
 
+
+    //아이디 찾기
+    private void searchId() {
+        String name = input("이름을 입력하세요 : ");
+        String phoneNum = input("휴대폰 번호를 입력하세요 : ");
+
+        while (true) {
+            int ranNum = cr.randomInNum();
+            String inNum = input("인증번호를 입력하세요 : ");
+
+            boolean flagInCheck = cr.phoneCheckNum(inNum, ranNum);
+            if (flagInCheck == true) {
+                System.out.println("인증번호일치");
+            } else {
+                System.out.println("입력하신 인증번호가 다릅니다");
+            }
+        }
+
+
+    }
 }
