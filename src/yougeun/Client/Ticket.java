@@ -17,11 +17,29 @@ public class Ticket extends City {
     private Way way; // 왕복 & 편도
     private Grade grade;
     private int passenger; // 총 인원
-    private Grade grade; // 좌석 등급
-    private boolean isCheckin; // 체크인 여부
 
-    public Grade getGrade() {
-        return grade;
+    private boolean isCheckin; // 체크인 여부
+    private int pay;
+
+
+    public int getPay() {
+        return pay;
+    }
+
+    public void setPay(int pay) {
+        this.pay = pay;
+    }
+
+    public void setAll(String from, String destination, LocalDate go, LocalDate comeback, Way way, Grade grade, int passenger, int pay){
+        this.from = from;
+        this.destination = destination;
+        this.go = go;
+        this.comeback = comeback;
+        this.way = way;
+        this.grade = grade;
+        this.passenger = passenger;
+        this.pay = pay;
+
     }
 
     public void setCheckin(boolean checkin) {
@@ -32,14 +50,12 @@ public class Ticket extends City {
         return isCheckin;
     }
 
-    public void setGrade(Grade grade) {
-        this.grade = grade;
-    }
+
 
     public Ticket() {
     }
 
-    public Ticket(String from, String destination, int go, int comeback, Way way, Grade grade, int passenger) {
+    public Ticket(String from, String destination, LocalDate go, LocalDate comeback, Way way, Grade grade, int passenger) {
         this.from = from;
         this.destination = destination;
         this.go = go;
@@ -120,5 +136,20 @@ public class Ticket extends City {
     public void setPassenger(int passenger) {
         this.passenger = passenger;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "from='" + from + '\'' +
+                ", destination='" + destination + '\'' +
+                ", go=" + go +
+                ", comeback=" + comeback +
+                ", way=" + way +
+                ", grade=" + grade +
+                ", passenger=" + passenger +
+                ", isCheckin=" + isCheckin +
+                '}';
+    }
+
 }
 

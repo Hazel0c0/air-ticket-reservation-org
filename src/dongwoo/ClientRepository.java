@@ -1,6 +1,7 @@
 package dongwoo;
 
 
+import yougeun.Client.Client;
 import yougeun.Client.Gender;
 import yougeun.Utility;
 
@@ -246,13 +247,13 @@ public class ClientRepository {
         }
         return false;
     }
-    public boolean checkPwSignUp(String writePw){
+    public Client checkPwSignUp(String writePw){
         for (int i = 0; i <clientList.size() ; i++) {
             if (clientList.get(i).getPassword().equals(writePw)){
-                return true;
+                return clientList.get(i);
             }
         }
-        return false;
+        return null;
     }
 
 }
