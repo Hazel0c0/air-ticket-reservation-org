@@ -1,6 +1,8 @@
 package jiwon.airlineStatus;
 
 
+import jiwon.enumset.Continent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,10 +10,11 @@ import static jiwon.enumset.Continent.*;
 import static jiwon.enumset.Theme.*;
 
 public class StatusRepository {
-  static List<City> city;
+  public static List<City> city;
 
   // 편도 가격, 좌석 등급마다 1배, 1.5배, 2배 *2
   static {
+
     city = new ArrayList<>(
         List.of(
 //        테마 입력 안할경우 '노말'로 설정됨
@@ -30,7 +33,10 @@ public class StatusRepository {
             new City("후쿠오카", 183200, JAPAN, POPULARITY),
             new City("오키나와 나하", 124900, JAPAN, POPULARITY),
             new City("삿포로", 103300, JAPAN),
+            new City("미야코섬", 299000, JAPAN, UNUSUAL),
             new City("나고야", 184900, JAPAN, UNUSUAL),
+            new City("호이안 올드타운", 285000, SOUTHEAST_ASIA, UNUSUAL),
+            new City("하버 브릿지", 783000, EUROPE, UNUSUAL),
             new City("하노이", 224900, SOUTHEAST_ASIA),
             new City("다낭", 243800, SOUTHEAST_ASIA),
             new City("방콕", 283300, SOUTHEAST_ASIA, POPULARITY),
@@ -51,7 +57,9 @@ public class StatusRepository {
             new City("사이판", 338000, OCEANIA),
             new City("시드니", 620000, OCEANIA),
             new City("오클랜드", 450000, OCEANIA),
-            new City("라스베가스", 1450000, AMERICA)
+            new City("라스베가스", 1450000, AMERICA),
+                new City("판도라", 20050000, AMERICA, DISCOUNT),
+                new City("화성", 341450000, AMERICA, DISCOUNT)
         ));
   }
 

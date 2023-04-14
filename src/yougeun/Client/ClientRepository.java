@@ -16,7 +16,7 @@ public class ClientRepository {
                         new Client("하나", Gender.FEMALE, "019-3333-3333", "one@naver.com", "서울", "one", "one", new Card("2000", 2200000), 700000),
                         new Client("둘", Gender.MALE, "019-4444-4444", "two@naver.com", "대구", "two", "two", new Card("3000", 3600000), 300000),
                         new Client("셋", Gender.FEMALE, "019-5555-5555", "three@naver.com", "대전", "three", "three"),
-                        new Client("test", Gender.MALE, "010-6666-6666", "test@naver.com", "서울", "test", "test", new Card("1", 1000000000 ), new Ticket("서울", "뉴욕", LocalDate.of(2023, 5, 30), LocalDate.of(2023, 6, 20), Way.ROUND_TRIP, 2), 500000000)
+                        new Client("test", Gender.MALE, "010-6666-6666", "test@naver.com", "서울", "testtest", "testtest", new Card("1", 1000000000 ), new Ticket("서울", "뉴욕", LocalDate.of(2023, 5, 30), LocalDate.of(2023, 6, 20), Way.ROUND_TRIP, 2), 500000000)
                 )
 
         );

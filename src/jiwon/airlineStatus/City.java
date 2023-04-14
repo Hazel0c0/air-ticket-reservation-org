@@ -72,7 +72,10 @@ public class City {
   }
 
   public Object getChoice(Object o) {
-    if (o instanceof Theme) return getTheme();
+    if (o instanceof Theme) {
+      return getTheme();
+    }
+
     return getContinent();
   }
 }

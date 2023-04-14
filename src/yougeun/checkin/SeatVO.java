@@ -2,7 +2,10 @@ package yougeun.checkin;
 
 public class SeatVO {
 
-    private static boolean seat[][];
+    private static boolean seat[][]; // economy, pre
+    private static boolean first[][]; // first
+
+
     static {
         seat = new boolean[9][6];
         for (int i = 0; i < seat.length; i++) {
@@ -12,8 +15,15 @@ public class SeatVO {
                 }
             }
         }
+
+        first = new boolean[6][3];
+        first[0][1] = true;
+
     }
     public static boolean[][] getSeat() {
         return seat;
+    }
+    public static boolean[][] getSeat2() {
+        return first;
     }
 }

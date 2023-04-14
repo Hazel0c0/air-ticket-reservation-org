@@ -29,8 +29,8 @@ public class SamjoAirLine {
     public static void menu(Client client){
         Utility.topBar();
         System.out.println("✦── 삼조 에어라인에 오신 "+ client.getUserName()+"님 환영합니다 ──");
-        System.out.println("┆ 1. 국내|국제선 예매");    // 지원님
-        System.out.println("✿2. 결제 페이지");    // 지원님
+        System.out.println("┆ 1. 국내선 예매");    // 지원님
+        System.out.println("✿2. 국제선 예매");    // 지원님
         System.out.println("┆ 3. 공항안내");       // 유근
         // 공항선택, 공항정보, 체크인, 라운지
         System.out.println("┆ 4. 공지사항");       // 유근
@@ -54,12 +54,13 @@ public class SamjoAirLine {
 
         switch (selectMenu){
             case 1:
-                AirlineSearchView.searchView(client);
+                AirlineSearchView.searchView(client, true);
 //                System.out.println("국내선 예매");
                 stop();
                 break;
             case 2:
-                Payment.pay(client);
+                AirlineSearchView.searchView(client, false);
+//                Payment.pay(client);
 //                System.out.println("결제");
                 stop();
                 break;

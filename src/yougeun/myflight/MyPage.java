@@ -22,6 +22,7 @@ public class MyPage {
         System.out.println("4. 출금하기");
         System.out.println("5. 개인정보 변경하기 (이름, 번호, 이메일)");
         System.out.println("6. 유저 정보 조회하기 (이름, 번호, 이메일)");
+        System.out.println("7. 여행지 추천 정보 코너");
         System.out.println("0. 돌아가기");
     }
 
@@ -122,6 +123,11 @@ public class MyPage {
                         ClientRepository.showClient(client);
                         Utility.stop();
                         break;
+
+                    case 7:
+                        bestTravel(client);
+                        Utility.stop();
+                        break;
                     case 0:
                         return;
                 }
@@ -131,6 +137,37 @@ public class MyPage {
         }
     }
 
+    private static void bestTravel(Client client) {
+        if(client.getTicket().getPassenger()==0){
+            System.out.println(client.getUserName() + "님이 예약한 정보가 없습니다.");
+            return;
+        }
+
+        if(client.getTicket().getDestination().equals("제주")){
+            System.out.println("===제주도 추천 호텔===");
+            System.out.println("[이름] 파르나스   [번호] 064-801-5555");
+            System.out.println("[이름] 롯데호텔   [번호] 064-731-1000");
+            System.out.println("[이름] 신라스테이 [번호] 064-751-8000");
+            System.out.println("===제주도 추천 렌터카===");
+            System.out.println("[이름] 하이렌터카    [번호] 050-1490-1501");
+            System.out.println("[이름] 제주공항렌터카 [번호] 064-744-4800");
+            System.out.println("[이름] 롯데렌터카    [번호] 064-751-8000");
+            Utility.makeLine();
+        } else if(client.getTicket().getDestination().equals("라스베가스")){
+            System.out.println("===라스베가스 추천 여행지===");
+            System.out.println("1. 라스베가스 카지노");
+            System.out.println("2. 벨라지오 분수");
+            System.out.println("3. m&m 스토어");
+            System.out.println("===라스베가스 추천 블로그===");
+            System.out.println("1. 미국서부여행 라스베가스여행 그랜드캐년 미국관광지 투어");
+            System.out.println("2. 미국 서부여행코스 : 그랜드캐년 관광지, 요세미티 국립공원");
+            System.out.println("3. 미국여행 미서부의 꽃 라스베가스 야경 및 관광지 둘러보기");
+            Utility.makeLine();
+        } else{
+            System.out.println("추천 여행 정보가 없습니다.");
+        }
+        Utility.stop();
+    }
 
 
     // 개인정보 변경하기 (이름, 번호, 이메일)
