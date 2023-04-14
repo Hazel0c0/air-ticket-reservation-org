@@ -1,18 +1,40 @@
 package yougeun.Client;
 
+
 import jiwon.airlineStatus.City;
+
 import jiwon.enumset.Grade;
 import jiwon.enumset.Way;
+
+import java.time.LocalDate;
 
 
 public class Ticket extends City {
     private String from;    // 출발지
     private String destination;  // 도착지
-    private int go;   // 탑승일
-    private int comeback; //도착일
+    private LocalDate go;   // 탑승일
+    private LocalDate comeback; //도착일
     private Way way; // 왕복 & 편도
     private Grade grade;
     private int passenger; // 총 인원
+    private Grade grade; // 좌석 등급
+    private boolean isCheckin; // 체크인 여부
+
+    public Grade getGrade() {
+        return grade;
+    }
+
+    public void setCheckin(boolean checkin) {
+        isCheckin = checkin;
+    }
+
+    public boolean isCheckin() {
+        return isCheckin;
+    }
+
+    public void setGrade(Grade grade) {
+        this.grade = grade;
+    }
 
     public Ticket() {
     }
@@ -26,14 +48,15 @@ public class Ticket extends City {
         this.grade = grade;
         this.passenger = passenger;
     }
-//삭제
-    public Ticket(String from, String to, int date, Way way, int personnal, int go, int comeback, int passenger) {
+
+    public Ticket(String from, String destination, LocalDate go, LocalDate comeback, Way way, int passenger) {
+
         this.from = from;
-        this.destination = to;
+        this.destination = destination;
         this.go = go;
         this.comeback = comeback;
-        this.passenger = passenger;
         this.way = way;
+        this.passenger = passenger;
     }
 
     public Grade getGrade() {
@@ -73,20 +96,19 @@ public class Ticket extends City {
         this.destination = destination;
     }
 
-    public int getGo() {
+    public LocalDate getGo() {
         return go;
     }
 
-    public void setGo(int go) {
+    public void setGo(LocalDate go) {
         this.go = go;
     }
 
-
-    public int getComeback() {
+    public LocalDate getComeback() {
         return comeback;
     }
 
-    public void setComeback(int comeback) {
+    public void setComeback(LocalDate comeback) {
         this.comeback = comeback;
     }
 
