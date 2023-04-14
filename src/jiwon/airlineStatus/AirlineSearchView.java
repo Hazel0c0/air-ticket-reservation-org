@@ -40,20 +40,21 @@ public class AirlineSearchView {
     System.out.println("===== 항공권 예매 =====");
 
 
-//    date();   // 출도착일 검색
-//    n = personnel();
+    date();   // 출도착일 검색
+    n = personnel();
 
     // 왕복 편도 선택
-//    while (tk.getWay()==null) {
-//      ar.way(input("\n  [ 1. 왕복   2. 편도 ]"));
-//    }
+    while (tk.getWay()==null) {
+      ar.way(input("\n  [ 1. 왕복   2. 편도 ]"));
+    }
 
     // 좌석 등급 선택
-//    while (tk.getGrade()==null) {
-//      ar.seatGrade(input("\n# 좌석 등급을 선택해주세요\n" +
-//          "1. ECONOMY  2. PRESTIGE  3. FIRST"));
-//    }
+    while (tk.getGrade()==null) {
+      ar.seatGrade(input("\n# 좌석 등급을 선택해주세요\n" +
+          "1. ECONOMY  2. PRESTIGE  3. FIRST"));
+    }
     pickAirline();    // 출도착지 검색
+    client.getTicket().setAll(tk.getFrom(), tk.getDestination(), tk.getGo(), tk.getComeback(), tk.getWay(), tk.getGrade(), tk.getPassenger(), tk.getPay());
   }
 
   private static void pickAirline() {
@@ -61,6 +62,7 @@ public class AirlineSearchView {
         airportList(); // 출발지 목록
         String airport = startingPoint(input("\n# 출발지를 선택해주세요"));
         System.out.println("[ 선택하신 공항은 " + airport + "입니다 ]\n");
+        tk.setFrom(airport);
 
         /* 출발지 입력되면 가지 못하는 도착지 지워지게 */
         System.out.println("# 여행 할 도시 선택을 도와드릴게요");
@@ -99,6 +101,8 @@ public class AirlineSearchView {
             System.out.println("번호를 정확히 입력해주세요");
         }
       stopInput("선택하신 항공권 확인해드리겠습니다. \n맞다면 enter를 눌러주세요!");
+
+
   }
 
   private static Way way(String pickWay) {
@@ -132,7 +136,10 @@ public class AirlineSearchView {
             "[ 성인: " + adult + ", 소아: " + child + ", 유아: " + baby + " ]\n");
 
         // 소문자 입력
-        if (personCk.equals("Y")) return adult + (child / 2);
+        if (personCk.equals("Y")) {
+          tk.setPassenger(adult+child);
+          return adult + (child / 2);
+        }
       } catch (NumberFormatException e) {
         System.out.println("*** 숫자를 입력해주세요 ***");
       }
@@ -200,6 +207,8 @@ public class AirlineSearchView {
           continue;
         }
         System.out.println("comeBack = " + comeBack);
+        tk.setGo(go);
+        tk.setComeback(comeBack);
         break;
       } catch (NumberFormatException e) {
         Utility.inputError();
@@ -208,55 +217,9 @@ public class AirlineSearchView {
         System.out.println("날짜 입력 오류!! 다시 입력해주세요");
         continue;
       }
+    }
 
-
-//      if (comeBack > go) {
-//        break;
-//      } else {
-//        System.out.println("!! 오늘날을 다시 입력해주세요.");
-//      }
-    }
-    ticket.setGo(go);
-    ticket.setComeback(comeBack);
-
-    makeLine();
-    System.out.println(
-        "\n전 구간에 소아와 함께 여행하는 동반 성인이 있을 경우,\n" +
-            "소아 단독 항공권 구매가 가능합니다.\n" +
-            "유아는 탑승일 기준 만 2세 미만까지이며,\n" +
-            "좌석을 점유하지 않습니다.\n");
-    makeLine();
-    while(true) {
-      try {
-        System.out.println("# 탑승 인원을 입력해주세요");
-        int adult = Integer.parseInt(inputDot("성인"));
-        int child = Integer.parseInt(inputDot("소아"));
-        int baby = Integer.parseInt(inputDot("유아")); // 요금 없음
-        ticket.setPassenger(adult+child);
-        break;
-      } catch (Exception e){
-        Utility.inputError();
-        continue;
-      }
-    }
-    while (true) {
-      String way = input("\n  [ 1. 왕복   2. 편도 ]");
-      if(way.equals("1")){
-        ticket.setWay(Way.ROUND_TRIP);
-        break;
-      } else if(way.equals("2")){
-        ticket.setWay(Way.ONE_WAY);
-        break;
-      }
-      //  ROUND_TRIP, ONE_WAY
-    }
-    Grade grade = null;
-    while (grade == null) {
-      String inputGrade = input("\n# 좌석 등급을 선택해주세요\n" +
-              "1. ECONOMY  2. PRESTIGE  3. FIRST");
-      grade = seatGrade(inputGrade);
-    }
-    ticket.setGrade(grade);
+    // ㅇㅇㅇ
   }
 
   private static Grade seatGrade(String n) {

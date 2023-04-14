@@ -1,16 +1,11 @@
 package dongwoo;
 
 
-import dongwoo.Client.*;
+import yougeun.Client.Client;
 import yougeun.Client.Gender;
-import yougeun.Utility;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
-import static yougeun.Utility.*;
 import static yougeun.Utility.input;
 
 public class ClientView {
@@ -29,7 +24,7 @@ public class ClientView {
         System.out.println("=============================");
     }
 
-    public void viewProcess() {
+    public Client viewProcess() {
 
         while (true) {
             mainView();
@@ -40,7 +35,10 @@ public class ClientView {
                     signUp();
                     break;
                 case "2":
-                    login();
+                    Client client = login();
+                    if(client!=null){
+                        return client;
+                    }
                     break;
                 case "0":
                     String answer = input("# 정말로 종료합니까? [y/n] : ");
@@ -279,7 +277,7 @@ public class ClientView {
 
 
     //로그인화면
-    private void login() {
+    private Client login() {
         //아이디로그인
         while (true) {
             String writeId = input("아이디를 입력하세요 : ");
@@ -294,15 +292,15 @@ public class ClientView {
         //비밀번호 로그인
         while (true) {
             String writePw = input("비밀번호를 입력하세요 : ");
-            boolean flagPwSignUp = cr.checkPwSignUp(writePw);
+            Client client = cr.checkPwSignUp(writePw);
 
-            if (flagPwSignUp == true) {
+            if (!(client==null)) {
                 System.out.println("Pw 확인");
                 System.out.println("로그인완료");
-                break;
+                return client;
             }else {
                 System.out.println("존재하지 않는 비밀번호입니다. 다시 입력해주세요");
-
+                return null;
             }
         }
 

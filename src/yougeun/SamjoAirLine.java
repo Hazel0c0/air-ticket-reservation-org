@@ -8,6 +8,7 @@ import yougeun.board.BoardView;
 import yougeun.checkin.SeatView;
 import yougeun.couponShop.CouponShop;
 import yougeun.myflight.MyPage;
+import yougeun.payment.Payment;
 import yougeun.reservationCheck.ReservationCheck;
 import yougeun.schedule.ScheduleFareCheck;
 
@@ -21,15 +22,15 @@ import static yougeun.Utility.*;
 public class SamjoAirLine {
 
 
-    public static Client client;
+
 
 
     // 메인 메뉴 화면입니다!
-    public static void menu(){
+    public static void menu(Client client){
         Utility.topBar();
-        System.out.println("✦── 삼조 에어라인에 오신 것을 환영합니다 ──");
-        System.out.printf("┆ 1. 국내선 예매%10s｀、、｀ヽ｀ヽ｀、、\n", "");    // 지원님
-        System.out.println("✿2. 국제선 예매");    // 지원님
+        System.out.println("✦── 삼조 에어라인에 오신 "+ client.getUserName()+"님 환영합니다 ──");
+        System.out.println("┆ 1. 국내|국제선 예매");    // 지원님
+        System.out.println("✿2. 결제 페이지");    // 지원님
         System.out.println("┆ 3. 공항안내");       // 유근
         // 공항선택, 공항정보, 체크인, 라운지
         System.out.println("┆ 4. 공지사항");       // 유근
@@ -54,12 +55,12 @@ public class SamjoAirLine {
         switch (selectMenu){
             case 1:
                 AirlineSearchView.searchView(client);
-                System.out.println("국내선 예매");
+//                System.out.println("국내선 예매");
                 stop();
                 break;
             case 2:
-                AirlineSearchView.searchView(client);
-                System.out.println("국제선 예매");
+                Payment.pay(client);
+//                System.out.println("결제");
                 stop();
                 break;
             case 3:
@@ -106,10 +107,9 @@ public class SamjoAirLine {
 
     }
     // 메인 실행 함수
-    public static void run(){
-        client = ClientRepository.getClientArrayList().get(5);
+    public static void run(Client client){
         while (true) {
-            menu();
+            menu(client);
             try {
                 int selectMenu = Integer.parseInt(input("원하는 메뉴를 선택하세요 : "));
                 if(!mainLogic(selectMenu, client)){

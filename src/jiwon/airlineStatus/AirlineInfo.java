@@ -55,5 +55,7 @@ public class AirlineInfo {
         ));
   }
 
-
+  public static List<City> getCity() {
+    return city;
+  }
 }

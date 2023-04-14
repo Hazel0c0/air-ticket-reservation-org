@@ -50,7 +50,9 @@ public class AirlineRepository {
     ThemeAndContinent(o);
     String pick = input("여행을 떠나고 싶은 나라를 선택해주세요");
     makeLine();
+    tk.setDestination(pick);
     pickCity(pick);
+
   }
 
   // 테마, 나라별 여행지 선택
@@ -70,7 +72,9 @@ public class AirlineRepository {
     System.out.println("    " + from + " <-> " + t.getCountryName());
 //    System.out.println("    "+(pickWay==Way.ONE_WAY?"편도":"왕복"));
     System.out.println("    "+ tk.getWayK());
-    System.out.println("    KRW " + (int)calFee(t));
+    int fee = (int)calFee(t);
+    tk.setPay(fee);
+    System.out.println("    KRW " + fee);
     makeLine();
   }
   double calFee(City t){
@@ -113,9 +117,11 @@ public class AirlineRepository {
       case "1":
       case "왕복":
         tk.setWay(Way.ROUND_TRIP);
+        break;
       case "2":
       case "편도":
         tk.setWay(Way.ONE_WAY);
+        break;
       default:
         System.out.println("숫자를 정확히 입력해주세요");
     }
@@ -124,10 +130,13 @@ public class AirlineRepository {
     switch (n) {
       case "1":
         tk.setGrade(Grade.ECONOMY);
+        break;
       case "2":
         tk.setGrade(Grade.PRESTIGE);
+        break;
       case "3":
         tk.setGrade(Grade.FIRST);
+        break;
       default:
         System.out.println("숫자를 정확히 입력해주세요");
     }
