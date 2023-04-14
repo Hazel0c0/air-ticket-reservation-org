@@ -1,6 +1,7 @@
 package jiwon.airlineStatus;
 
 import jiwon.enumset.Continent;
+import jiwon.enumset.Grade;
 import jiwon.enumset.Theme;
 import jiwon.enumset.Way;
 
@@ -8,8 +9,7 @@ import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 import static jiwon.airlineStatus.AirlineInfo.city;
-import static jiwon.airlineStatus.AirlineSearchView.n;
-import static jiwon.airlineStatus.AirlineSearchView.pickWay;
+import static jiwon.airlineStatus.AirlineSearchView.*;
 import static jiwon.enumset.Continent.*;
 import static jiwon.enumset.Theme.*;
 import static yougeun.Utility.*;
@@ -18,7 +18,6 @@ public class AirlineRepository {
   static List<String> airportList;
   static String from;
 
-  static City c = new City();
 
   // 출발지
   static {
@@ -68,12 +67,22 @@ public class AirlineRepository {
     showTicketInfo(findCity);
   }
   public void showTicketInfo(City t){
-    System.out.println("    " + "from" + " <-> " + t.getCountryName());
-    System.out.println("    "+(pickWay==Way.ONE_WAY?"편도":"왕복"));
-    System.out.println("    KRW " + t.getFee() * n * (pickWay==Way.ONE_WAY?1:2));
+    System.out.println("    " + from + " <-> " + t.getCountryName());
+//    System.out.println("    "+(pickWay==Way.ONE_WAY?"편도":"왕복"));
+    System.out.println("    "+ tk.getWayK());
+    System.out.println("    KRW " + (int)calFee(t));
     makeLine();
   }
-
+  double calFee(City t){
+    return t.getFee() * n // 인원수
+        * (tk.getWay()==Way.ONE_WAY?1:2) // 편도 왕복 계산
+        * multGrade();
+  }
+  private double multGrade() {
+    if (tk.getGrade()==Grade.PRESTIGE) return 1.5;
+    else if (tk.getGrade()==Grade.FIRST) return 2;
+    return 1;
+  }
    public Theme themeChangeNum(String inputTheme) {
     switch (inputTheme) {
       case "1":
@@ -99,6 +108,29 @@ public class AirlineRepository {
     return cMap.get(s);
   }
 
-
+  public void way(String input) {
+    switch (input) {
+      case "1":
+      case "왕복":
+        tk.setWay(Way.ROUND_TRIP);
+      case "2":
+      case "편도":
+        tk.setWay(Way.ONE_WAY);
+      default:
+        System.out.println("숫자를 정확히 입력해주세요");
+    }
+  }
+   public void seatGrade(String n) {
+    switch (n) {
+      case "1":
+        tk.setGrade(Grade.ECONOMY);
+      case "2":
+        tk.setGrade(Grade.PRESTIGE);
+      case "3":
+        tk.setGrade(Grade.FIRST);
+      default:
+        System.out.println("숫자를 정확히 입력해주세요");
+    }
+  }
 }
 
