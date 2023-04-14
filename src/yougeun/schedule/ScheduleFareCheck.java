@@ -2,8 +2,9 @@ package yougeun.schedule;
 
 
 import jdk.jshell.execution.Util;
+import jiwon.airlineStatus.AirlineInfo;
 import jiwon.airlineStatus.City;
-import jiwon.airlineStatus.StatusRepository;
+//import jiwon.airlineStatus.StatusRepository;
 import yougeun.Utility;
 
 
@@ -16,12 +17,11 @@ import java.util.stream.Collectors;
 
 // 스케줄 운임 조회
 public class ScheduleFareCheck {
-
     public static void menu(){
         Utility.topBar();
         System.out.println("=== 스케줄/운임 조회 페이지 ===");
 //        Map<String, Country> countryMap = CountryRepository.getCountryMap();
-        List<City> city = StatusRepository.getCity();
+        List<City> city = AirlineInfo.getCity();
         while (true) {
             int i=0;
             for (City city1 : city) {

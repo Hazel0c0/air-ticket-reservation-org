@@ -2,7 +2,6 @@ package yougeun.payment;
 
 
 import jiwon.airlineStatus.City;
-import jiwon.airlineStatus.StatusRepository;
 import jiwon.enumset.Way;
 import yougeun.Client.Client;
 import yougeun.Client.Ticket;
