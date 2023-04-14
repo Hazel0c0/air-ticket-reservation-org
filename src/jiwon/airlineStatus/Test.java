@@ -3,23 +3,20 @@
 package jiwon.airlineStatus;
 
 
+
+import java.util.List;
+import static java.util.stream.Collectors.toList;
+import static jiwon.airlineStatus.AirlineInfo.city;
+import static yougeun.Utility.inputDot;
+import static yougeun.Utility.makeLine;
+
 import yougeun.Client.ClientRepository;
+
 
 public class Test {
 
   public static void main(String[] args) {
-// 스트링 리스트로 새로 담기
-//    List<String> theme= city.stream()
-//        .filter(popul -> popul.getTheme() == POPULARITY)
-//        .collect(toList());
-//    System.out.println(theme);
-//
-//    List<City> pickCity = city.stream()
-//        .filter(city1 -> city1.getCountryName().equals("상하이"))
-//        .collect(toList());
-//
-//    System.out.println(pickCity);
-//    static Stream<City> filter;
+
 
     AirlineSearchView.searchView(ClientRepository.getClientArrayList().get(5));
   }

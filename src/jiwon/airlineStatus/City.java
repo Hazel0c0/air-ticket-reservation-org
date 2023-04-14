@@ -1,7 +1,11 @@
 package jiwon.airlineStatus;
 
 import jiwon.enumset.Theme;
+import jiwon.enumset.Way;
 
+import static yougeun.Utility.makeLine;
+
+// 역할 : 여행할 도시의 정보와 요금
 public class City {
   private String countryName;
   private int fee;    // 편도 요금

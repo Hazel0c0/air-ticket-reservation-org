@@ -1,17 +1,21 @@
 package yougeun.Client;
 
+
+import jiwon.airlineStatus.City;
+
 import jiwon.enumset.Grade;
 import jiwon.enumset.Way;
 
 import java.time.LocalDate;
 
 
-public class Ticket {
+public class Ticket extends City {
     private String from;    // 출발지
     private String destination;  // 도착지
     private LocalDate go;   // 탑승일
     private LocalDate comeback; //도착일
     private Way way; // 왕복 & 편도
+    private Grade grade;
     private int passenger; // 총 인원
     private Grade grade; // 좌석 등급
     private boolean isCheckin; // 체크인 여부
@@ -35,7 +39,18 @@ public class Ticket {
     public Ticket() {
     }
 
+    public Ticket(String from, String destination, int go, int comeback, Way way, Grade grade, int passenger) {
+        this.from = from;
+        this.destination = destination;
+        this.go = go;
+        this.comeback = comeback;
+        this.way = way;
+        this.grade = grade;
+        this.passenger = passenger;
+    }
+
     public Ticket(String from, String destination, LocalDate go, LocalDate comeback, Way way, int passenger) {
+
         this.from = from;
         this.destination = destination;
         this.go = go;
@@ -44,8 +59,21 @@ public class Ticket {
         this.passenger = passenger;
     }
 
+    public Grade getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Grade grade) {
+        this.grade = grade;
+    }
+
     public String getFrom() {
         return from;
+    }
+
+    public String getWayK() {
+        if (way==Way.ONE_WAY) return "편도";
+        return "왕복";
     }
 
     public Way getWay() {
