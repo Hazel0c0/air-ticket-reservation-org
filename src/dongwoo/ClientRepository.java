@@ -106,7 +106,8 @@ public class ClientRepository {
             domainName[0] = "naver.com";
             domainName[1] = "daum.com";
             domainName[2] = "kako.co.kr";
-            domainName[3] = sc.nextLine();
+            if(email2==4)
+                domainName[3] = sc.nextLine();
             return domainName[email2-1];
 
         }
@@ -241,26 +242,16 @@ public class ClientRepository {
         for (int i = 0; i <clientList.size() ; i++) {
             if (clientList.get(i).getId().equals(writeId)){
                 return true;
-            }else {
-                return false;
             }
-
-
         }
-
         return false;
     }
     public boolean checkPwSignUp(String writePw){
         for (int i = 0; i <clientList.size() ; i++) {
             if (clientList.get(i).getPassword().equals(writePw)){
                 return true;
-            }else {
-                return false;
             }
-
-
         }
-
         return false;
     }
 
