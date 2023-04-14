@@ -3,9 +3,13 @@ package yougeun;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Utility {
     static BufferedReader br;
+    public static double battery = 100;
+
     static{
         br = new BufferedReader(new InputStreamReader(System.in));
     }
@@ -75,4 +79,14 @@ public class Utility {
     public static void makeLine() {
         System.out.println("----------------------------------");
     }
+
+    public static void topBar() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+        System.out.println("╔═════════════════════════════════════╗");
+        System.out.println("soon9 "+ now.format(dateTimeFormatter) +" ▁▂▃▅▆▇ "+ String.format("%.1f", battery) + "%");
+        System.out.println("╚═════════════════════════════════════╝");
+        battery-=0.1;
+    }
+
 }

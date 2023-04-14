@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 public class ScheduleFareCheck {
 
     public static void menu(){
+        Utility.topBar();
         System.out.println("=== 스케줄/운임 조회 페이지 ===");
 //        Map<String, Country> countryMap = CountryRepository.getCountryMap();
         List<City> city = StatusRepository.getCity();

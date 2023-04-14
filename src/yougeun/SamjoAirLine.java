@@ -11,6 +11,10 @@ import yougeun.myflight.MyPage;
 import yougeun.reservationCheck.ReservationCheck;
 import yougeun.schedule.ScheduleFareCheck;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static yougeun.Utility.*;
 
 
@@ -19,8 +23,10 @@ public class SamjoAirLine {
 
     public static Client client;
 
+
     // 메인 메뉴 화면입니다!
     public static void menu(){
+        Utility.topBar();
         System.out.println("✦── 삼조 에어라인에 오신 것을 환영합니다 ──");
         System.out.printf("┆ 1. 국내선 예매%10s｀、、｀ヽ｀ヽ｀、、\n", "");    // 지원님
         System.out.println("✿2. 국제선 예매");    // 지원님

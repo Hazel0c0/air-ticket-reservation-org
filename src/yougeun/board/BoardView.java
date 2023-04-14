@@ -37,6 +37,7 @@ public class BoardView {
     }
 
     public static void menu(){
+        Utility.topBar();
         System.out.println("=== 삼조 에어라인 공지사항 페이지입니다. ===");
         System.out.println("No                제목             글쓴이    작성시간   좋아요");
         System.out.println("============================================================");
