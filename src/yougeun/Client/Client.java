@@ -15,6 +15,16 @@ public class Client {
     private Ticket ticket;
     private int point;
     private boolean isAdmin;
+    private boolean isPay;
+
+    public boolean isPay() {
+        return isPay;
+    }
+
+    public void setPay(boolean pay) {
+        isPay = pay;
+    }
+
     private final ArrayList<String> couponList;
 
 

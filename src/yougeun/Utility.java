@@ -22,10 +22,13 @@ public class Utility {
             throw new RuntimeException(e);
         }
     }
-    public static void stopInput(String s){
+    public static boolean stopInput(String s){
         try {
             System.out.println(s);
-            br.readLine();
+            if(br.readLine().equalsIgnoreCase("0"))
+                return false;
+            return true;
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
