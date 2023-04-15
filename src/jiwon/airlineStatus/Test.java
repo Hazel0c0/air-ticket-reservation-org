@@ -12,6 +12,7 @@ import static jiwon.airlineStatus.AirlineInfo.city;
 import static yougeun.Utility.inputDot;
 import static yougeun.Utility.makeLine;
 
+import jiwon.enumset.Continent;
 import jiwon.enumset.Theme;
 import yougeun.Client.ClientRepository;
 
@@ -19,6 +20,9 @@ import yougeun.Client.ClientRepository;
 public class Test {
 
   public static void main(String[] args) {
+
+    AirlineRepository ar = new AirlineRepository();
+    ar.choiceCity(Continent.CHINA);
 //    List<City> collect = city.stream()
 //        .filter(c -> c.getTheme() == Theme.DISCOUNT)
 //        .collect(toList());
