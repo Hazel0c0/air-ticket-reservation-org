@@ -19,8 +19,7 @@ public class ClientView {
         System.out.println("\n### 삼조 에어라인에 오신걸 환영합니다~~ ###");
         System.out.println("* 1. 회원 정보 등록하기");
         System.out.println("* 2. 로그인");
-        System.out.println("* 3. 아이디찾기");
-        System.out.println("* 4. 비밀번호찾기");
+        System.out.println("* 3. 아이디,비밀번호찾기");
         System.out.println("* 0. 프로그램 종료하기");
         System.out.println("=============================");
     }
@@ -37,7 +36,7 @@ public class ClientView {
                     break;
                 case "2":
                     Client client = login();
-                    if(client!=null){
+                    if (client != null) {
                         return client;
                     }
                     break;
@@ -93,7 +92,7 @@ public class ClientView {
         //성별확인
         Gender gender;
         while (true) {
-            String genderNum =(inputDot("성별 (1.남자 2.여자) "));
+            String genderNum = (inputDot("성별 (1.남자 2.여자) "));
             gender = cr.genderCheck(genderNum);
             if (gender.equals(Gender.MALE) || gender.equals(Gender.FEMALE)) {
                 System.out.println("성별확인");
@@ -122,11 +121,11 @@ public class ClientView {
                     if (checkNum == true) {
                         break;
                     }
-                }else {
+                } else {
                     System.out.println("보기 안에 있는 숫자를 입력해주세요\n");
                 }
             }
-                empty2();
+            empty2();
             String userPhone1 = inputDot("휴대폰번호(앞 3자리, '-' 제외 숫자만 입력하세요 ");
 
             String sd = cr.phone_firstNum(userPhone);
@@ -169,12 +168,12 @@ public class ClientView {
                     empty2();
 
                     break;
-                }else {
+                } else {
                     System.out.println("인증번호가 일치하지 않습니다");
                     empty2();
 
                 }
-            }else {
+            } else {
                 System.out.println("숫자를입력하세요");
                 empty2();
 
@@ -182,7 +181,6 @@ public class ClientView {
             }
         }
         String email = null;
-
 
 
         //개인메일계정 입력
@@ -197,7 +195,6 @@ public class ClientView {
                 if (flagEmailWrite == email1) {
 
 
-
                     //도메인입력
                     empty2();
                     String s = inputDot("메일도메인 (1.네이버 2.다음 3.카카오 4.기타(직접입력))");
@@ -208,7 +205,8 @@ public class ClientView {
                         //정수변환
                         int email2 = Integer.parseInt(s);
                         //4.도메인 직접 입력시
-                        if (email2 == 4) System.out.print("도메인을 입력하세요 : ");{
+                        if (email2 == 4) System.out.print("도메인을 입력하세요 : ");
+                        {
                         }
                         //도메인 선택 입력
                         boolean flagDomain = cr.domainPush(email2);
@@ -229,12 +227,12 @@ public class ClientView {
 
                     }
 
-                }else {
+                } else {
                     System.out.println("메일을 다시 입력하세요 6~12자리");
                     empty2();
 
                 }
-            }else {
+            } else {
                 System.out.println("영문과 숫자만 입력 가능합니다.");
                 empty2();
 
@@ -286,7 +284,7 @@ public class ClientView {
                     empty2();
 
                 }
-            }else {
+            } else {
                 System.out.println("영문 또는 숫자만 입력해주세요");
                 empty2();
 
@@ -299,7 +297,7 @@ public class ClientView {
             pw = inputDot("비밀번호");
             String pw2 = inputDot("비밀번호확인");
             boolean flagPw = cr.pwCheck(pw, pw2);
-            boolean length= cr.idLength(pw);
+            boolean length = cr.idLength(pw);
             boolean integerCheck = cr.integerCheck(pw);
             boolean englishCheck = cr.englishCheck(pw);
 
@@ -320,19 +318,20 @@ public class ClientView {
                     empty2();
 
                 }
-            }else {
+            } else {
                 System.out.println("영문 또는 숫자만 입력해주세요");
                 empty2();
 
             }
         }
         //나이입력
-        int age;
+        int nowAge;
         while (true) {
 
             try {
-                age = Integer.parseInt(inputDot("나이"));
-                boolean flagAge = cr.ageCheck(age);
+                int age = Integer.parseInt(inputDot("생년월일(ex_20230416)"));
+                nowAge = cr.age(age);
+                boolean flagAge = cr.ageCheck(nowAge);
 
                 if (flagAge == true) {
                     System.out.println("나이 확인");
@@ -342,36 +341,36 @@ public class ClientView {
 
                     break;
                 } else {
-                    System.out.println("0~150살 사이 값을 입력하세요");
+                    System.out.println("1875~2023년 사이 값을 입력하세요");
                     empty2();
 
                 }
 
-            }catch (NumberFormatException e){
-                System.out.println("0~150 사이 숫자를 입력하세요");
+            } catch (NumberFormatException e) {
                 empty2();
+                System.out.println("숫자만 입력하세요");
 
 
-            }catch (Exception e){
-
+            } catch (Exception e) {
+                System.out.println("숫자를 입력하세요");
             }
 
 
         }
 
-        Client client = new Client(name, gender, realNum, email, location, id, pw, age);
+        Client client = new Client(name, gender, realNum, email, location, id, pw, nowAge);
         cr.clientList.add(client);
-        int listNum=cr.clientList.size()-1;
+        int listNum = cr.clientList.size() - 1;
 
         System.out.println("====가입된 회원정보====");
-        System.out.println("이름 : "+cr.clientList.get(listNum).getUserName());
-        System.out.println("성별 : "+cr.clientList.get(listNum).getGender());
-        System.out.println("전화번호 : "+cr.clientList.get(listNum).getUserPhone());
-        System.out.println("이메일 : "+cr.clientList.get(listNum).getEmail());
-        System.out.println("주소 : "+cr.clientList.get(listNum).getLocation());
-        System.out.println("아이디 : "+cr.clientList.get(listNum).getId());
-        System.out.println("비밀번호 : "+cr.clientList.get(listNum).getPassword());
-        System.out.println("나이 : "+cr.clientList.get(listNum).getAge());
+        System.out.println("이름 : " + cr.clientList.get(listNum).getUserName());
+        System.out.println("성별 : " + cr.clientList.get(listNum).getGender());
+        System.out.println("전화번호 : " + cr.clientList.get(listNum).getUserPhone());
+        System.out.println("이메일 : " + cr.clientList.get(listNum).getEmail());
+        System.out.println("주소 : " + cr.clientList.get(listNum).getLocation());
+        System.out.println("아이디 : " + cr.clientList.get(listNum).getId());
+        System.out.println("비밀번호 : " + cr.clientList.get(listNum).getPassword());
+        System.out.println("나이 : " + cr.clientList.get(listNum).getAge());
 
 
     }
@@ -389,7 +388,7 @@ public class ClientView {
                 empty2();
 
                 break;
-            }else {
+            } else {
                 System.out.println("존재하지 않는 아이디입니다. 다시 입력해주세요");
                 empty2();
 
@@ -401,11 +400,11 @@ public class ClientView {
 
             Client client = cr.checkPwSignUp(writePw);
 
-            if (!(client==null)) {
+            if (!(client == null)) {
                 System.out.println("Pw 확인");
                 System.out.println("로그인완료");
                 return client;
-            }else {
+            } else {
                 System.out.println("존재하지 않는 비밀번호입니다. 다시 입력해주세요");
                 empty2();
 
@@ -418,21 +417,82 @@ public class ClientView {
 
     //아이디 찾기
     private void searchId() {
-        String name = inputDot("이름을 입력하세요");
-        String phoneNum = inputDot("휴대폰 번호를 입력하세요");
+        while (true){
+            empty2();
 
-        while (true) {
-            int ranNum = cr.randomInNum();
-            String inNum = inputDot("인증번호를 입력하세요");
+            String name = inputDot("이름을 입력하세요");
+            boolean kor = cr.koreanCheck(name);
+            boolean nc = cr.nameCheck(name);
 
-            boolean flagInCheck = cr.phoneCheckNum(inNum, ranNum);
-            if (flagInCheck == true) {
-                System.out.println("인증번호일치");
-            } else {
-                System.out.println("입력하신 인증번호가 다릅니다");
+            //한글 , 글자수 제한
+            if (kor) {
+                if (nc) {
+
+
+
+
+                    //번호 입력
+
+
+                    String phoneNum = inputDot("휴대폰 번호를 입력하세요('-'제외 11~12자리 숫자만!)");
+                    boolean pnlen = cr.phoneCheckDash(phoneNum);
+                    boolean intch = cr.integerCheck(phoneNum);
+
+
+                    if (pnlen) {
+                        if (intch) {
+
+                            //-포함 숫자 변환
+                            String checkph = cr.phone_format(phoneNum);
+                            System.out.println("전화번호:"+checkph);
+                            boolean idsearch = cr.idSearch(name, checkph);
+
+                            if (idsearch) {
+                                while (true) {
+
+                                    cr.message("인증번호");
+                                    int ranNum = cr.randomInNum();
+                                    String inNum = inputDot("인증번호를 입력하세요");
+                                    empty2();
+
+                                    boolean flagInCheck = cr.phoneCheckNum(inNum, ranNum);
+                                    if (flagInCheck == true) {
+
+                                        cr.message("아이디 비밀번호 안내");
+                                        System.out.println("인증번호일치");
+
+                                        System.out.println(cr.idView(name, checkph));
+                                        empty2();
+
+                                        break;
+
+                                    } else {
+                                        System.out.println("입력하신 인증번호가 다릅니다");
+                                    }
+                                }
+                            } else {
+                                System.out.println("입력하신 이름, 전화번호로 가입되어 있는 아이디 비밀번호는 없습니다.\n");
+                            }
+
+                        } else {
+                            System.out.println("숫자만 입력하세요");                                                  }
+                    }else {
+                        System.out.println("'-'포함 12~13자리 입력하세요");
+
+                    }
+                }
+                else {
+                    System.out.println("2~5자리만 입력하세요");
+                }
+
+            }else {
+                System.out.println("정확한 한글 이름을 입력하세요");
+
             }
+            break;
         }
-
-
     }
+
+
+
 }

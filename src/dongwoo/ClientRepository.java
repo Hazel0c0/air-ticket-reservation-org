@@ -5,10 +5,7 @@ import yougeun.Client.Client;
 import yougeun.Client.Gender;
 import yougeun.Utility;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 import static yougeun.Utility.*;
 import static yougeun.Utility.empty2;
@@ -160,8 +157,16 @@ public class ClientRepository {
     }
 
 
-    //휴대폰번호 인증문자
+    //휴대폰번호 길이확인
     public boolean phoneCheck(String userPhone){
+        if (userPhone.length()==10||userPhone.length()==11){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    //-휴대폰 번호 길이 확인
+public boolean phoneCheckDash(String userPhone){
         if (userPhone.length()==10||userPhone.length()==11){
             return true;
         }else {
@@ -214,9 +219,15 @@ public class ClientRepository {
 
     //인증번호 확인
     public boolean phoneCheckNum(String phoneCheckNum, int randomNum){
-        int phoneCheck=Integer.parseInt(phoneCheckNum);
-        if(phoneCheck==randomNum){
-            return true;
+
+        try {
+            int phoneCheck = Integer.parseInt(phoneCheckNum);
+            if (phoneCheck == randomNum) {
+                return true;
+            }
+            return false;
+        }catch (NumberFormatException e){
+            System.out.println("숫자 입력 하세요");
         }
         return false;
     }
@@ -266,6 +277,21 @@ public class ClientRepository {
 
     }
 
+    //생년월일 나이 계산
+    public int age(int age){
+
+        Calendar now = Calendar.getInstance();//년월일시분초
+        int present = now.get(Calendar.YEAR);
+
+        int myAge=age/10000;
+
+        int nowAge = (present-myAge+1);
+
+
+        return nowAge;
+
+    }
+
     //데이터 회원정보 입력
     public boolean checkIdSignUp(String writeId){
         for (int i = 0; i <clientList.size() ; i++) {
@@ -284,9 +310,43 @@ public class ClientRepository {
         return null;
     }
 
-    //아이디 비밀번호 찾기
-    public void search(){
+    //아이디 찾기 이름 휴대폰번호 확인
+    public boolean idSearch(String name, String pn) {
+        boolean flagId = false;
+        for (int i = 0; i < clientList.size(); i++) {
+            if (clientList.get(i).getUserName().equals(name)) {
+            if (clientList.get(i).getUserPhone().equals(pn)) {
+                System.out.println("가입정보 확인!!");
+                empty2();
+                flagId= true;
+                break;
+            }
+            }
 
+
+        }
+        return flagId;
     }
+
+    //아이디 찾기 이름 휴대전화 출력
+    public String idView(String name, String pn){
+        for (int i = 0; i < clientList.size(); i++) {
+            if (clientList.get(i).getUserName().equals(name)) {
+
+                if (clientList.get(i).getUserPhone().equals(pn)) {
+                    return "아이디 : "+clientList.get(i).getId()
+                            +"\n비밀번호 : "+clientList.get(i).getPassword();
+                }
+            }
+
+        }
+        return "입력하신 정보의 아이디가 없습니다.";
+    }
+
+    //문자발송
+    public void message(String msg){
+        System.out.println("수신 : 에어삼조 _ "+msg);
+    }
+
 
 }

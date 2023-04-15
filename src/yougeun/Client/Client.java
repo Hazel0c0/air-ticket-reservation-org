@@ -42,7 +42,7 @@ public class Client {
     public ArrayList<String> getCouponList() {
         return couponList;
     }
-    public Client(String userName, Gender gender, String userPhone, String email, String location, String id, String password, int age) {
+    public Client(String userName, Gender gender, String userPhone, String email, String location, String id, String password, int nowAge) {
         couponList = new ArrayList<>();
         this.userName = userName;
         this.gender = gender;
@@ -51,7 +51,7 @@ public class Client {
         this.location = location;
         this.id = id;
         this.password = password;
-        this.age = age;
+        this.age = nowAge;
     }
     public Client(String userName, Gender gender, String userPhone, String email, String location, String id, String password, Card card, int point) {
         couponList = new ArrayList<>();
