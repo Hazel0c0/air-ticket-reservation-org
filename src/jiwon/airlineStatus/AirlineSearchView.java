@@ -62,20 +62,21 @@ public class AirlineSearchView {
             "1. ECONOMY  2. PRESTIGE  3. FIRST"));
       }
     }
-    pickAirline(client, isOverseas);    // 출도착지 검색
+    pickAirline(client);    // 출도착지 검색
 
   }
 
-  private static void pickAirline(Client client, boolean isOverseas) {
+  private static void pickAirline(Client client) {
     /* [+] 출발지 (일부) 입력하면 출발지 목록 보여주는 기능 */
     airportList(); // 출발지 목록
     String airport = startingPoint(input("\n# 출발지를 선택해주세요"));
     System.out.println("[ 선택하신 공항은 " + airport + "입니다 ]\n");
     tk.setFrom(airport);
 
-    String inputTo;
+    String inputTo=null;
     if (isKo){
-      inputTo="3";
+      inputTo="4";
+      isKo=false;
     } else {
       /* 출발지 입력되면 가지 못하는 도착지 지워지게 */
       System.out.println("# 여행 할 도시 선택을 도와드릴게요");
@@ -100,11 +101,6 @@ public class AirlineSearchView {
         break;
 
       case "3":
-        if (isOverseas) {
-          System.out.println("1. 국내");
-          ar.choiceCity(Continent.DOMESTIC);
-          break;
-        } else {
           System.out.println("1. 중화권");
           System.out.println("2. 일본");
           System.out.println("3. 동남아");
@@ -115,7 +111,9 @@ public class AirlineSearchView {
           // 번호로만 선택받을지, 글자로도 받을지
           ar.choiceCity(pickContinent);
           break;
-        }
+      case "4" :
+          ar.choiceCity(Continent.DOMESTIC);
+          break;
       default:
         System.out.println("번호를 정확히 입력해주세요");
     }
