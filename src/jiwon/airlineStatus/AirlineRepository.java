@@ -104,10 +104,14 @@ public class AirlineRepository {
   }
 
   double calFee(City t) {
-
-    return t.getFee() * n // 인원수
+    double fee = t.getFee() * n // 인원수
         * (tk.getWay() == Way.ONE_WAY ? 1 : 2) // 편도 왕복 계산
         * multGrade();
+    if (test.equals("ㅇㅇ")){
+      fee=t.getFee();
+    }
+
+    return fee;
   }
 
   private double multGrade() {

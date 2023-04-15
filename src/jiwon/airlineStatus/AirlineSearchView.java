@@ -28,6 +28,7 @@ public class AirlineSearchView {
 
   static int n;    // 탑승인원
 
+  static String test;
 
   static {
     ar = new AirlineRepository();
@@ -39,86 +40,90 @@ public class AirlineSearchView {
   // isOverseas == true면 해외, isOverseas false면 국내
   public static void searchView(Client client, boolean isOverseas) {
     Ticket ticket = client.getTicket();
-    System.out.println("===== 항공권 예매 =====");
+    test = inputDot("\n성격이 급하신가요? ");
+
+    System.out.println("\n===== 항공권 예매 =====");
 
 
-    date();   // 출도착일 검색
-    n = personnel();
+    if (!test.equals("ㅇㅇ")) {
 
-    // 왕복 편도 선택
-    while (tk.getWay()==null) {
-      ar.way(input("\n  [ 1. 왕복   2. 편도 ]"));
-    }
+      date();   // 출도착일 검색
+      n = personnel();
 
-    // 좌석 등급 선택
-    while (tk.getGrade()==null) {
-      ar.seatGrade(input("\n# 좌석 등급을 선택해주세요\n" +
-          "1. ECONOMY  2. PRESTIGE  3. FIRST"));
+      // 왕복 편도 선택
+      while (tk.getWay() == null) {
+        ar.way(input("\n  [ 1. 왕복   2. 편도 ]"));
+      }
+
+      // 좌석 등급 선택
+      while (tk.getGrade() == null) {
+        ar.seatGrade(input("\n# 좌석 등급을 선택해주세요\n" +
+            "1. ECONOMY  2. PRESTIGE  3. FIRST"));
+      }
     }
     pickAirline(client, isOverseas);    // 출도착지 검색
 
   }
 
   private static void pickAirline(Client client, boolean isOverseas) {
-      /* [+] 출발지 (일부) 입력하면 출발지 목록 보여주는 기능 */
-        airportList(); // 출발지 목록
-        String airport = startingPoint(input("\n# 출발지를 선택해주세요"));
-        System.out.println("[ 선택하신 공항은 " + airport + "입니다 ]\n");
-        tk.setFrom(airport);
+    /* [+] 출발지 (일부) 입력하면 출발지 목록 보여주는 기능 */
+    airportList(); // 출발지 목록
+    String airport = startingPoint(input("\n# 출발지를 선택해주세요"));
+    System.out.println("[ 선택하신 공항은 " + airport + "입니다 ]\n");
+    tk.setFrom(airport);
 
-        /* 출발지 입력되면 가지 못하는 도착지 지워지게 */
-        System.out.println("# 여행 할 도시 선택을 도와드릴게요");
-        System.out.println("  1. 어디로든지 문!!=3");
-        System.out.println("  2. 테마별 여행지");
-        System.out.println("  3. 전체 여행지");
+    /* 출발지 입력되면 가지 못하는 도착지 지워지게 */
+    System.out.println("# 여행 할 도시 선택을 도와드릴게요");
+    System.out.println("  1. 어디로든지 문!!=3");
+    System.out.println("  2. 테마별 여행지");
+    System.out.println("  3. 전체 여행지");
 
-        String inputTo = input("\n 번호를 선택해주세요");
-        System.out.println();
+    String inputTo = input("\n 번호를 선택해주세요");
+    System.out.println();
 
-        switch (inputTo) {
-          case "1": // 인기있는 여행지
-            System.out.println("\n*** 이번달 인기 여행지 입니다 ***");
-            ar.choiceCity(POPULARITY);
-            break;
-          case "2":
-            System.out.println("1. HOT SUMMER!");
-            System.out.println("2. 바로 내일~! 여행");
-            System.out.println("3. Class가 다른 이색 여행지");
-            Theme pickTheme = ar.themeChangeNum(inputDot("# 테마를 선택해주세요"));
-            ar.choiceCity(pickTheme);
-            break;
+    switch (inputTo) {
+      case "1": // 인기있는 여행지
+        System.out.println("\n*** 이번달 인기 여행지 입니다 ***");
+        ar.choiceCity(POPULARITY);
+        break;
+      case "2":
+        System.out.println("1. HOT SUMMER!");
+        System.out.println("2. 바로 내일~! 여행");
+        System.out.println("3. Class가 다른 이색 여행지");
+        Theme pickTheme = ar.themeChangeNum(inputDot("# 테마를 선택해주세요"));
+        ar.choiceCity(pickTheme);
+        break;
 
-          case "3":
-            if(isOverseas) {
-              System.out.println("1. 국내");
-              ar.choiceCity(Continent.DOMESTIC);
-              break;
-            }
-            else {
-              System.out.println("1. 중화권");
-              System.out.println("2. 일본");
-              System.out.println("3. 동남아");
-              System.out.println("4. 미주");
-              System.out.println("5. 유럽");
-              System.out.println("6. 대양주");
-            Continent pickContinent = ar.pickContinent(inputDot("# 번호를 선택해주세요 "));
-            // 번호로만 선택받을지, 글자로도 받을지
-            ar.choiceCity(pickContinent);
-            break;
-            }
-          default:
-            System.out.println("번호를 정확히 입력해주세요");
+      case "3":
+        if (isOverseas) {
+          System.out.println("1. 국내");
+          ar.choiceCity(Continent.DOMESTIC);
+          break;
+        } else {
+          System.out.println("1. 중화권");
+          System.out.println("2. 일본");
+          System.out.println("3. 동남아");
+          System.out.println("4. 미주");
+          System.out.println("5. 유럽");
+          System.out.println("6. 대양주");
+          Continent pickContinent = ar.pickContinent(inputDot("# 번호를 선택해주세요 "));
+          // 번호로만 선택받을지, 글자로도 받을지
+          ar.choiceCity(pickContinent);
+          break;
         }
-      if(stopInput("선택하신 항공권 확인해드리겠습니다. \n결제창으로 이동합니다 [ 취소 : 0번 ]")){
-        client.getTicket().setAll(tk.getFrom(), tk.getDestination(), tk.getGo(), tk.getComeback(), tk.getWay(), tk.getGrade(), tk.getPassenger(), tk.getPay());
-        Payment.pay(client);
-        //성공
-      } else {
-        System.out.println("취소합니다.");
-        client.setTicket(new Ticket());
-        return;
-        //취소
-      }
+      default:
+        System.out.println("번호를 정확히 입력해주세요");
+    }
+    if (stopInput("선택하신 항공권 확인해드리겠습니다. \n결제창으로 이동합니다 [ 취소 : 0번 ]")) {
+      client.getTicket().setAll(tk.getFrom(), tk.getDestination(), tk.getGo(), tk.getComeback(), tk.getWay(), tk.getGrade(), tk.getPassenger(), tk.getPay());
+      Payment.pay(client);
+      //성공
+    } else {
+      System.out.println("취소합니다.");
+      client.setTicket(new Ticket());
+      return;
+      //취소
+    }
 
 
   }
@@ -155,7 +160,7 @@ public class AirlineSearchView {
 
         // 소문자 입력
         if (personCk.equalsIgnoreCase("Y")) {
-          tk.setPassenger(adult+child);
+          tk.setPassenger(adult + child);
           return adult + (child / 2);
         }
       } catch (NumberFormatException e) {

@@ -10,146 +10,147 @@ import java.time.LocalDate;
 
 
 public class Ticket extends City {
-    private String from;    // 출발지
-    private String destination;  // 도착지
-    private LocalDate go;   // 탑승일
-    private LocalDate comeback; //도착일
-    private Way way; // 왕복 & 편도
-    private Grade grade;
-    private int passenger; // 총 인원
+  private String from;    // 출발지
+  private String destination;  // 도착지
+  private LocalDate go;   // 탑승일
+  private LocalDate comeback; //도착일
+  private Way way; // 왕복 & 편도
+  private Grade grade;
+  private int passenger; // 총 인원
 
-    private boolean isCheckin; // 체크인 여부
-    private int pay;
-
-
-    public int getPay() {
-        return pay;
-    }
-
-    public void setPay(int pay) {
-        this.pay = pay;
-    }
-
-    public void setAll(String from, String destination, LocalDate go, LocalDate comeback, Way way, Grade grade, int passenger, int pay){
-        this.from = from;
-        this.destination = destination;
-        this.go = go;
-        this.comeback = comeback;
-        this.way = way;
-        this.grade = grade;
-        this.passenger = passenger;
-        this.pay = pay;
-
-    }
-
-    public void setCheckin(boolean checkin) {
-        isCheckin = checkin;
-    }
-
-    public boolean isCheckin() {
-        return isCheckin;
-    }
+  private boolean isCheckin; // 체크인 여부
+  private int pay;
 
 
+  public int getPay() {
+    return pay;
+  }
 
-    public Ticket() {
-    }
+  public void setPay(int pay) {
+    this.pay = pay;
+  }
 
-    public Ticket(String from, String destination, LocalDate go, LocalDate comeback, Way way, Grade grade, int passenger) {
-        this.from = from;
-        this.destination = destination;
-        this.go = go;
-        this.comeback = comeback;
-        this.way = way;
-        this.grade = grade;
-        this.passenger = passenger;
-    }
+  public void setAll(String from, String destination, LocalDate go, LocalDate comeback, Way way, Grade grade, int passenger, int pay) {
+    this.from = from;
+    this.destination = destination;
+    this.go = go;
+    this.comeback = comeback;
+    this.way = way;
+    this.grade = grade;
+    this.passenger = passenger;
+    this.pay = pay;
 
-    public Ticket(String from, String destination, LocalDate go, LocalDate comeback, Way way, int passenger) {
+  }
 
-        this.from = from;
-        this.destination = destination;
-        this.go = go;
-        this.comeback = comeback;
-        this.way = way;
-        this.passenger = passenger;
-    }
+  public void setCheckin(boolean checkin) {
+    isCheckin = checkin;
+  }
 
-    public Grade getGrade() {
-        return grade;
-    }
+  public boolean isCheckin() {
+    return isCheckin;
+  }
 
-    public void setGrade(Grade grade) {
-        this.grade = grade;
-    }
 
-    public String getFrom() {
-        return from;
-    }
+  public Ticket() {
+  }
 
-    public String getWayK() {
-        if (way==Way.ONE_WAY) return "편도";
-        return "왕복";
-    }
+  public Ticket(String from, String destination, LocalDate go, LocalDate comeback, Way way, Grade grade, int passenger) {
+    this.from = from;
+    this.destination = destination;
+    this.go = go;
+    this.comeback = comeback;
+    this.way = way;
+    this.grade = grade;
+    this.passenger = passenger;
+  }
 
-    public Way getWay() {
-        return way;
-    }
+  public Ticket(String from, String destination, LocalDate go, LocalDate comeback, Way way, int passenger) {
 
-    public void setWay(Way way) {
-        this.way = way;
-    }
+    this.from = from;
+    this.destination = destination;
+    this.go = go;
+    this.comeback = comeback;
+    this.way = way;
+    this.passenger = passenger;
+  }
 
-    public void setFrom(String from) {
-        this.from = from;
-    }
+  public Grade getGrade() {
+    return grade;
+  }
 
-    public String getDestination() {
-        return destination;
-    }
+  public void setGrade(Grade grade) {
+    this.grade = grade;
+  }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
+  public String getFrom() {
+    return from;
+  }
 
-    public LocalDate getGo() {
-        return go;
-    }
+  public String getWayK() {
+    if (way == Way.ROUND_TRIP)
+      return "왕복";
 
-    public void setGo(LocalDate go) {
-        this.go = go;
-    }
+    return "편도";
+  }
 
-    public LocalDate getComeback() {
-        return comeback;
-    }
+  public Way getWay() {
+    return way;
+  }
 
-    public void setComeback(LocalDate comeback) {
-        this.comeback = comeback;
-    }
+  public void setWay(Way way) {
+    this.way = way;
+  }
 
-    public int getPassenger() {
-        return passenger;
+  public void setFrom(String from) {
+    this.from = from;
+  }
 
-    }
+  public String getDestination() {
+    return destination;
+  }
 
-    public void setPassenger(int passenger) {
-        this.passenger = passenger;
-    }
+  public void setDestination(String destination) {
+    this.destination = destination;
+  }
 
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "from='" + from + '\'' +
-                ", destination='" + destination + '\'' +
-                ", go=" + go +
-                ", comeback=" + comeback +
-                ", way=" + way +
-                ", grade=" + grade +
-                ", passenger=" + passenger +
-                ", isCheckin=" + isCheckin +
-                '}';
-    }
+  public LocalDate getGo() {
+    return go;
+  }
+
+  public void setGo(LocalDate go) {
+    this.go = go;
+  }
+
+  public LocalDate getComeback() {
+    return comeback;
+  }
+
+  public void setComeback(LocalDate comeback) {
+    this.comeback = comeback;
+  }
+
+  public int getPassenger() {
+    return passenger;
+
+  }
+
+  public void setPassenger(int passenger) {
+    this.passenger = passenger;
+  }
+
+  @Override
+  public String toString() {
+    return "Ticket{" +
+        "from='" + from + '\'' +
+        ", destination='" + destination + '\'' +
+        ", go=" + go +
+        ", comeback=" + comeback +
+        ", way=" + way +
+        ", grade=" + grade +
+        ", passenger=" + passenger +
+        ", isCheckin=" + isCheckin +
+        '}';
+  }
 
 }
 
