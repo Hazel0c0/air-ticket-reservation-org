@@ -20,29 +20,119 @@ import static yougeun.Utility.*;
 
 
 public class SamjoAirLine {
-
-
-
-
-
     // 메인 메뉴 화면입니다!
     public static void menu(Client client){
         Utility.topBar();
         System.out.println("✦── 삼조 에어라인에 오신 "+ client.getUserName()+"님 환영합니다 ──");
-        System.out.println("┆ 1. 국내선 예매");    // 지원님
-        System.out.println("✿2. 국제선 예매");    // 지원님
-        System.out.println("┆ 3. 공항안내");       // 유근
-        // 공항선택, 공항정보, 체크인, 라운지
-        System.out.println("┆ 4. 공지사항");       // 유근
-        // 게시판 형식의 프로그램
-        System.out.println("┆ 5. 체크인");       // 유근
-        System.out.println("✿6. 예약 조회");    // 유근
-        System.out.println("┆ 7. 마일리지 쇼핑몰");  //유근
-        System.out.println("┆ 8. My FLIGHT");     // 유근
-        // 개인 자산 관리, 포인트 관리 ...
-        System.out.println("┆ 9. 스케줄/운임 조회"); // 유근
-        System.out.println("✿0. 로그아웃");      // 동우님
+        System.out.println("┆ 1. 예매하기");
+        System.out.println("✿2. 마이페이지");
+        System.out.println("┆ 3. 회원서비스");
+        System.out.println("✿0. 로그아웃");
         System.out.println("╰───────────────\uD83E\uDD40");
+    }
+
+    public static void menu1(Client client){
+        while (true) {
+            Utility.topBar();
+            System.out.println("✦── 삼조 에어라인에 오신 "+ client.getUserName()+"님 환영합니다 ──");
+            System.out.println("┆ 1. 국내선예매");
+            System.out.println("✿2. 국제선예매");
+            System.out.println("✿0. 뒤로가기");
+            System.out.println("╰───────────────\uD83E\uDD40");
+
+            try {
+                int selectMenu = Integer.parseInt(input("원하는 메뉴를 선택하세요 : "));
+                switch (selectMenu){
+                    case 1:
+                        AirlineSearchView.searchView(client, true);
+    //                System.out.println("국내선 예매");
+                        stop();
+                        break;
+                    case 2:
+                        AirlineSearchView.searchView(client, false);
+                        break;
+                    case 0:
+                        return;
+                    default:
+                        inputError();
+                        stop();
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("에러 다시 입력하세요");
+            }
+        }
+
+
+    }
+    public static void menu2(Client client){
+        while (true) {
+            Utility.topBar();
+            System.out.println("✦── 삼조 에어라인에 오신 "+ client.getUserName()+"님 환영합니다 ──");
+            System.out.println("┆ 1. 체크인");
+            System.out.println("✿2. 예약조회");
+            System.out.println("✿3. 마일리지 쇼핑몰");
+            System.out.println("✿4. My Flight");
+            System.out.println("┆5. 스케줄/운임조회");
+            System.out.println("✿0. 뒤로가기");
+            System.out.println("╰───────────────\uD83E\uDD40");
+            try {
+                int selectMenu = Integer.parseInt(input("원하는 메뉴를 선택하세요 : "));
+                switch (selectMenu){
+                    case 1:
+                        SeatView.checkin(client);
+                        break;
+                    case 2:
+                        ReservationCheck.check();
+                        break;
+                    case 3:
+                        CouponShop.shop(client);
+                        break;
+                    case 4:
+                        MyPage.myPageMenu(client);
+                        break;
+                    case 5:
+                        ScheduleFareCheck.menu();
+                        break;
+                    case 0:
+                        return;
+                    default:
+                        inputError();
+                        stop();
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("에러 다시 입력하세요");
+            }
+        }
+    }
+
+
+    public static void menu3(Client client){
+        while (true) {
+            Utility.topBar();
+            System.out.println("✦── 삼조 에어라인에 오신 "+ client.getUserName()+"님 환영합니다 ──");
+            System.out.println("┆ 1. 공항안내");
+            System.out.println("✿2. 공지사항");
+            System.out.println("✿0. 뒤로가기");      // 동우님
+            System.out.println("╰───────────────\uD83E\uDD40");
+            try {
+                int selectMenu = Integer.parseInt(input("원하는 메뉴를 선택하세요 : "));
+                switch (selectMenu){
+                    case 1:
+                        AirlineInfoView.selectAirline();
+                        break;
+                    case 2:
+                        BoardView.run();
+                        break;
+                    case 0:
+                        return;
+                    default:
+                        inputError();
+                        stop();
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("에러 다시 입력하세요");
+            }
+        }
     }
 
 
@@ -50,7 +140,7 @@ public class SamjoAirLine {
      * 번호에 따라 원하는 메뉴를 실행하는 함수입니다.
      * @param selectMenu 유저로 부터 입력을 받은 변수
      */
-    public static boolean mainLogic(int selectMenu, Client client){
+    public static boolean losic(int selectMenu, Client client){
 
         switch (selectMenu){
             case 1:
@@ -105,8 +195,33 @@ public class SamjoAirLine {
                 stop();
         }
         return true;
+    }
+
+
+    public static boolean mainLogic(int selectMenu, Client client) {
+        switch (selectMenu){
+            case 1:
+                menu1(client);
+                break;
+            case 2:
+               menu2(client);
+                break;
+            case 3:
+                menu3(client);
+                break;
+            case 0:
+                System.out.println("로그아웃");
+                return false;
+            default:
+                inputError();
+                stop();
+        }
+        return true;
+
 
     }
+
+
     // 메인 실행 함수
     public static void run(Client client){
         while (true) {
