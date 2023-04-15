@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import static yougeun.Utility.*;
+import static yougeun.Utility.empty2;
+
 public class ClientRepository {
 
 
@@ -114,6 +117,8 @@ public class ClientRepository {
         }
         catch(IndexOutOfBoundsException e) {
             System.out.println("보기 내에 있는 숫자를 입력하세요");
+            empty2();
+
         }
         return " ";
     }
@@ -132,11 +137,26 @@ public class ClientRepository {
     //    주소입력
     public boolean addressCheck(String location){
         System.out.println(location);
-        String answerNum = Utility.input("입력한주소가맞으신가요?\n1.네 2.아니오");
+        empty2();
+        String answerNum = inputDot("입력한주소가맞으신가요?(1.네 2.아니오)");
+
         switch (answerNum){
             case "1": return true;
         }
         return false;
+    }
+
+    //휴대폰 번호 앞 3글자 보기 이외의 값 오류
+    public boolean phoneNum(String user){
+        try {
+            int intuser=Integer.parseInt(user);
+            if(intuser>=1&&intuser<=5) {
+                return true;
+            }else return false;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
     }
 
 

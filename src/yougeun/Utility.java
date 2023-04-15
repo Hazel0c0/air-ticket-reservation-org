@@ -40,6 +40,8 @@ public class Utility {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 
+    public static void empty2(){System.out.print("\n");}
+
 
     // 입력 받은 문자가 #인지 확인하는 함수, true면 스킵 기능으로 씀.
     public static boolean skip(char a){
