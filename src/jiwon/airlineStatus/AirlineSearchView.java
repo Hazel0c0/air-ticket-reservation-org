@@ -154,7 +154,7 @@ public class AirlineSearchView {
             "[ 성인: " + adult + ", 소아: " + child + ", 유아: " + baby + " ]\n");
 
         // 소문자 입력
-        if (personCk.equals("Y")) {
+        if (personCk.equalsIgnoreCase("Y")) {
           tk.setPassenger(adult+child);
           return adult + (child / 2);
         }

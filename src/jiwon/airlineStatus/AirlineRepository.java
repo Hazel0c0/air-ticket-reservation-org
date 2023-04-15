@@ -4,7 +4,9 @@ import jiwon.enumset.Continent;
 import jiwon.enumset.Grade;
 import jiwon.enumset.Theme;
 import jiwon.enumset.Way;
+import yougeun.Utility;
 
+import java.text.NumberFormat;
 import java.util.*;
 
 import static java.util.stream.Collectors.toList;
@@ -46,12 +48,21 @@ public class AirlineRepository {
 
   //도착지 선택
   public void choiceCity(Object o) {
-    makeLine();
-    ThemeAndContinent(o);
-    String pick = input("여행을 떠나고 싶은 나라를 선택해주세요");
-    makeLine();
-    tk.setDestination(pick);
-    pickCity(pick);
+      while (true) {
+
+          makeLine();
+          ThemeAndContinent(o);
+          String pick = input("여행을 떠나고 싶은 나라를 선택해주세요");
+          makeLine();
+          tk.setDestination(pick);
+          if (!pickCity(pick)) {
+              System.out.println("나라를 정확히 입력해주세요!");
+              Utility.stop();
+              continue;
+          }
+          break;
+
+      }
 
   }
 
@@ -64,11 +75,17 @@ public class AirlineRepository {
         .forEach(a -> showTicketInfo(a));
   }
 
-  private void pickCity(String input) {
-    City findCity = city.stream()
-        .filter(c -> c.getCountryName().equals(input))
-        .findFirst().get();
-    showTicketInfo(findCity);
+  public boolean pickCity(String input) {
+    try {
+        City findCity = city.stream()
+                .filter(c -> c.getCountryName().equals(input))
+                .findFirst().get();
+        showTicketInfo(findCity);
+//        System.out.println("findCity = " + findCity);
+        return true;
+    } catch (Exception e){
+        return false;
+    }
   }
 
   public void showTicketInfo(City t) {
@@ -78,10 +95,11 @@ public class AirlineRepository {
     int fee = (int) calFee(t);
     if (t.getTheme() == DISCOUNT) {
       fee *= 0.7;
+//      System.out.println("30퍼 할인");
     }
 
     tk.setPay(fee);
-    System.out.println("    KRW " + fee);
+    System.out.println("    KRW " + NumberFormat.getInstance(Locale.getDefault()).format(fee) );
     makeLine();
   }
 
