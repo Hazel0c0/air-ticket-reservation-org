@@ -16,6 +16,7 @@ import java.time.temporal.ChronoUnit;
 
 import static jiwon.airlineStatus.AirlineRepository.*;
 import static jiwon.enumset.Theme.*;
+import static yougeun.SamjoAirLine.isKo;
 import static yougeun.Utility.*;
 
 // 항공편 현황
@@ -72,15 +73,19 @@ public class AirlineSearchView {
     System.out.println("[ 선택하신 공항은 " + airport + "입니다 ]\n");
     tk.setFrom(airport);
 
-    /* 출발지 입력되면 가지 못하는 도착지 지워지게 */
-    System.out.println("# 여행 할 도시 선택을 도와드릴게요");
-    System.out.println("  1. 어디로든지 문!!=3");
-    System.out.println("  2. 테마별 여행지");
-    System.out.println("  3. 전체 여행지");
+    String inputTo;
+    if (isKo){
+      inputTo="3";
+    } else {
+      /* 출발지 입력되면 가지 못하는 도착지 지워지게 */
+      System.out.println("# 여행 할 도시 선택을 도와드릴게요");
+      System.out.println("  1. 어디로든지 문!!=3");
+      System.out.println("  2. 테마별 여행지");
+      System.out.println("  3. 전체 여행지");
 
-    String inputTo = input("\n 번호를 선택해주세요");
-    System.out.println();
-
+      inputTo = input("\n 번호를 선택해주세요");
+    }
+      System.out.println();
     switch (inputTo) {
       case "1": // 인기있는 여행지
         System.out.println("\n*** 이번달 인기 여행지 입니다 ***");

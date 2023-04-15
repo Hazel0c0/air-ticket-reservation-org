@@ -21,13 +21,15 @@ import static yougeun.Utility.*;
 
 public class SamjoAirLine {
     // 메인 메뉴 화면입니다!
+    static public boolean isKo;
+
     public static void menu(Client client){
         Utility.topBar();
         System.out.println("✦── 삼조 에어라인에 오신 "+ client.getUserName()+"님 환영합니다 ──");
-        System.out.println("┆ 1. 예매하기");
-        System.out.println("✿2. 마이페이지");
-        System.out.println("┆ 3. 회원서비스");
-        System.out.println("✿0. 로그아웃");
+        System.out.println("┆   1. 예매하기");
+        System.out.println("✿   2. 마이페이지");
+        System.out.println("┆   3. 회원서비스");
+        System.out.println("✿   0. 로그아웃");
         System.out.println("╰───────────────\uD83E\uDD40");
     }
 
@@ -35,15 +37,16 @@ public class SamjoAirLine {
         while (true) {
             Utility.topBar();
             System.out.println("✦── 삼조 에어라인에 오신 "+ client.getUserName()+"님 환영합니다 ──");
-            System.out.println("┆ 1. 국내선예매");
-            System.out.println("✿2. 국제선예매");
-            System.out.println("✿0. 뒤로가기");
+            System.out.println("┆  1. 국내선예매");
+            System.out.println("✿  2. 국제선예매");
+            System.out.println("✿  0. 뒤로가기");
             System.out.println("╰───────────────\uD83E\uDD40");
 
             try {
                 int selectMenu = Integer.parseInt(input("원하는 메뉴를 선택하세요 : "));
                 switch (selectMenu){
                     case 1:
+                        isKo=true;
                         AirlineSearchView.searchView(client, true);
     //                System.out.println("국내선 예매");
                         stop();
@@ -68,12 +71,12 @@ public class SamjoAirLine {
         while (true) {
             Utility.topBar();
             System.out.println("✦── 삼조 에어라인에 오신 "+ client.getUserName()+"님 환영합니다 ──");
-            System.out.println("┆ 1. 체크인");
-            System.out.println("✿2. 예약조회");
-            System.out.println("✿3. 마일리지 쇼핑몰");
-            System.out.println("✿4. My Flight");
-            System.out.println("┆5. 스케줄/운임조회");
-            System.out.println("✿0. 뒤로가기");
+            System.out.println("┆  1. 체크인");
+            System.out.println("✿  2. 예약조회");
+            System.out.println("✿  3. 마일리지 쇼핑몰");
+            System.out.println("✿  4. My Flight");
+            System.out.println("┆  5. 스케줄/운임조회");
+            System.out.println("✿  0. 뒤로가기");
             System.out.println("╰───────────────\uD83E\uDD40");
             try {
                 int selectMenu = Integer.parseInt(input("원하는 메뉴를 선택하세요 : "));
@@ -110,9 +113,9 @@ public class SamjoAirLine {
         while (true) {
             Utility.topBar();
             System.out.println("✦── 삼조 에어라인에 오신 "+ client.getUserName()+"님 환영합니다 ──");
-            System.out.println("┆ 1. 공항안내");
-            System.out.println("✿2. 공지사항");
-            System.out.println("✿0. 뒤로가기");      // 동우님
+            System.out.println("┆  1. 공항안내");
+            System.out.println("✿  2. 공지사항");
+            System.out.println("✿  0. 뒤로가기");      // 동우님
             System.out.println("╰───────────────\uD83E\uDD40");
             try {
                 int selectMenu = Integer.parseInt(input("원하는 메뉴를 선택하세요 : "));
