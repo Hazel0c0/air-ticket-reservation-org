@@ -43,6 +43,7 @@ public class ClientView {
 
                 case "3":
                     searchId();
+                    break;
                 case "0":
                     String answer = input("# 정말로 종료합니까? [y/n] : ");
                     if (answer.toLowerCase().charAt(0) == 'y') {
@@ -434,7 +435,7 @@ public class ClientView {
                     //번호 입력
 
 
-                    String phoneNum = inputDot("휴대폰 번호를 입력하세요('-'제외 11~12자리 숫자만!)");
+                    String phoneNum = inputDot("휴대폰 번호를 입력하세요('-'제외 10~11자리 숫자만!)");
                     boolean pnlen = cr.phoneCheckDash(phoneNum);
                     boolean intch = cr.integerCheck(phoneNum);
 
@@ -470,6 +471,10 @@ public class ClientView {
                                         System.out.println("입력하신 인증번호가 다릅니다");
                                     }
                                 }
+                                if(name!=null){
+                                    break;
+
+                                }
                             } else {
                                 System.out.println("입력하신 이름, 전화번호로 가입되어 있는 아이디 비밀번호는 없습니다.\n");
                             }
@@ -477,7 +482,7 @@ public class ClientView {
                         } else {
                             System.out.println("숫자만 입력하세요");                                                  }
                     }else {
-                        System.out.println("'-'포함 12~13자리 입력하세요");
+                        System.out.println("'-'포함 10~11자리 입력하세요");
 
                     }
                 }
@@ -489,7 +494,6 @@ public class ClientView {
                 System.out.println("정확한 한글 이름을 입력하세요");
 
             }
-            break;
         }
     }
 
