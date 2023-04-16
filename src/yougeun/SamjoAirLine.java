@@ -115,6 +115,7 @@ public class SamjoAirLine {
             System.out.println("✦── 삼조 에어라인에 오신 "+ client.getUserName()+"님 환영합니다 ──");
             System.out.println("┆  1. 공항안내");
             System.out.println("✿  2. 공지사항");
+            System.out.println("✿  3. 고객센터");
             System.out.println("✿  0. 뒤로가기");      // 동우님
             System.out.println("╰───────────────\uD83E\uDD40");
             try {
@@ -126,6 +127,9 @@ public class SamjoAirLine {
                     case 2:
                         BoardView.run();
                         break;
+                    case 3:
+                        customerCenter();
+                        break;
                     case 0:
                         return;
                     default:
@@ -136,6 +140,21 @@ public class SamjoAirLine {
                 System.out.println("에러 다시 입력하세요");
             }
         }
+    }
+
+    private static void customerCenter() {
+        System.out.println("진짜 여행, 쉼입니다.");
+        System.out.println();
+        System.out.println("M ) 카카오 채팅상담 운영시간");
+        System.out.println("9:00 ~ 9:10");
+        System.out.println();
+
+        System.out.println("- 이후 상담은 이메일 접수 시 신속히 도와드립니다.");
+        System.out.println("이메일 : hsg9984@gmail.com");
+        System.out.println();
+        System.out.println("(항공) 변경/환불 접수가능시간");
+        System.out.println("월-금 09:00~17:00");
+        Utility.stop();
     }
 
 

@@ -54,7 +54,7 @@ public class AirlineInfo {
             new City("사이판", 338000, OCEANIA),
             new City("시드니", 620000, OCEANIA),
             new City("오클랜드", 450000, OCEANIA),
-            new City("라스베가스", 1450000, AMERICA),
+            new City("라스베가스", 1450000, AMERICA,POPULARITY),
             new City("판도라", 20050000, AMERICA, DISCOUNT),
             new City("화성", 341450000, AMERICA, DISCOUNT)
         ));
