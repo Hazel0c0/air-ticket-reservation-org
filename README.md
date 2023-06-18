@@ -1,8 +1,6 @@
 # airSamjo
 <항공사 관리 프로그램>
 
-우리 토큰 ㅎ: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
-
 ## 동우
 
 - 로그인,
